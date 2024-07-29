@@ -32,6 +32,7 @@ where `container_name/id` can be found by running `docker ps -a`.
 ## Feature
 
 - [fetch](doc/fetch.md)
+- [decode](doc/decode.md)
 
 ## Related Efforts
 
