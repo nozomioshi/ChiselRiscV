@@ -7,7 +7,7 @@ class Top extends Module {
 
     val core = Module(new Core)
     val mem  = Module(new Memory)
-    mem.imem <> core.omem
+    mem.imem <> core.imem
     
     exit := core.exit
 }

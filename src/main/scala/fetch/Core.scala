@@ -5,7 +5,7 @@ import chisel3._
 import common.Constants._
 
 class Core extends Module {
-    val omem = IO(Flipped(new ImemPortIo))
+    val imem = IO(Flipped(new ImemPortIo))
     val exit = IO(Output(Bool()))
 
     val regFile = Mem(32, UInt(WordLen.W))
@@ -13,8 +13,8 @@ class Core extends Module {
     // Fetch
     val pcReg = RegInit(StartAddr)
     pcReg := pcReg + 4.U
-    omem.addr := pcReg
-    val inst = omem.inst
+    imem.addr := pcReg
+    val inst = imem.inst
 
     exit := (inst === 0x34333231.U)
 
