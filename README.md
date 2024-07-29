@@ -33,6 +33,7 @@ where `container_name/id` can be found by running `docker ps -a`.
 
 - [fetch](doc/fetch.md)
 - [decode](doc/decode.md)
+- [lw](doc/lw.md)
 
 ## Related Efforts
 
