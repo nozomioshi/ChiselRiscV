@@ -1,6 +1,8 @@
 # [riscvtests](../src/main/scala/riscvtests)
 
-## AddSub
+## Arithmetic
+
+### AddSub
 
     [R-Type]
     +-------------------------------------------------------------------------------------------------+
@@ -20,4 +22,22 @@ I-Type Instruction.
 
 ```asm
 addi rd, rs1, imm_i
+```
+
+## Logical
+
+R-Type Instructions.
+
+```asm
+and rd, rs1, rs2
+or  rd, rs1, rs2
+xor rd, rs1, rs2
+```
+
+I-Type Instructions.
+
+```asm
+andi rd, rs1, imm_i
+ori  rd, rs1, imm_i
+xori rd, rs1, imm_i
 ```

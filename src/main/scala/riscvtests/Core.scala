@@ -37,7 +37,13 @@ class Core extends Module {
         (inst === Lw || inst === Addi)  -> (rs1Data + immIsext),
         (inst === Sw)                   -> (rs1Data + immSsext),
         (inst === Add)                  -> (rs1Data + rs2Data),
-        (inst === Sub)                  -> (rs1Data - rs2Data)
+        (inst === Sub)                  -> (rs1Data - rs2Data),
+        (inst === And)                  -> (rs1Data & rs2Data),
+        (inst === Or)                   -> (rs1Data | rs2Data),
+        (inst === Xor)                  -> (rs1Data ^ rs2Data),
+        (inst === Andi)                 -> (rs1Data & immIsext),
+        (inst === Ori)                  -> (rs1Data | immIsext),
+        (inst === Xori)                 -> (rs1Data ^ immIsext)
     ))
 
     // Memory access
@@ -47,7 +53,8 @@ class Core extends Module {
 
     // Write back
     val wbData = dmem.data
-    when (inst === Lw|| inst === Addi || inst === Add || inst === Sub) {
+    when (inst === Lw|| inst === Addi || inst === Add || inst === Sub ||inst === And || 
+    inst === Or || inst === Xor || inst === Andi || inst === Ori || inst === Xori) {
         regFile(wbAddr) := wbData
     }
 
