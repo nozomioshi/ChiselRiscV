@@ -35,6 +35,7 @@ where `container_name/id` can be found by running `docker ps -a`.
 - [decode](doc/decode.md)
 - [lw](doc/lw.md)
 - [sw](doc/sw.md)
+- [riscvtests](doc/riscvtests.md)
 
 ## Related Efforts
 
