@@ -4,6 +4,8 @@
 
 ### AddSub
 
+R-Type Instructions.
+
     [R-Type]
     +-------------------------------------------------------------------------------------------------+
     | 31 30 29 28 27 26 25 24 23 22 21 20 19 18 17 16 15 14 13 12 11 10 09 08 07 06 05 04 03 02 01 00 |
@@ -107,3 +109,30 @@ The instruction is 32 bits, while it's 16 bits in compressed instructions.
 Pointer counter must be the multiple of 16(2 bytes).
 Hence, the offset is multiplied by 2.
 At the same time, it can represent larger range.
+
+## Jump
+
+All jump instructions writes `PC+4` to Rd.
+
+J-Type Instruction.
+
+    [J-Type]
+    +-------------------------------------------------------------------------------------------------+
+    | 31 30 29 28 27 26 25 24 23 22 21 20 19 18 17 16 15 14 13 12 11 10 09 08 07 06 05 04 03 02 01 00 |
+    +------------------------------------------------------------+--------------+---------------------+
+    | imm_j(20 + 10:1 + 11 + 19:12)                              | rd           | opcode              |
+    +------------------------------------------------------------+--------------+---------------------+
+
+```asm
+jal  rd, offset
+```
+
+Like branch instructions, the offset is multiplied by 2.
+
+I-Type Instruction.
+
+```asm
+jalr rd, rs1, offset
+```
+
+The LSB is always set to 0 by `&`.
