@@ -44,7 +44,13 @@ class Core extends Module {
             Xor  -> List(AluXor, Op1Rs1, Op2Rs2, MenX, RenS, WbAlu),
             Andi -> List(AluAnd, Op1Rs1, Op2Imi, MenX, RenS, WbAlu),
             Ori  -> List(AluOr,  Op1Rs1, Op2Imi, MenX, RenS, WbAlu),
-            Xori -> List(AluXor, Op1Rs1, Op2Imi, MenX, RenS, WbAlu)
+            Xori -> List(AluXor, Op1Rs1, Op2Imi, MenX, RenS, WbAlu),
+            Sll  -> List(AluSll, Op1Rs1, Op2Rs2, MenX, RenS, WbAlu),
+            Srl  -> List(AluSrl, Op1Rs1, Op2Rs2, MenX, RenS, WbAlu),
+            Sra  -> List(AluSra, Op1Rs1, Op2Rs2, MenX, RenS, WbAlu),
+            Slli -> List(AluSll, Op1Rs1, Op2Imi, MenX, RenS, WbAlu),
+            Srli -> List(AluSrl, Op1Rs1, Op2Imi, MenX, RenS, WbAlu),
+            Srai -> List(AluSra, Op1Rs1, Op2Imi, MenX, RenS, WbAlu)
         )
     )
 
@@ -66,6 +72,9 @@ class Core extends Module {
         (exeFun === AluAnd) -> (op1Data & op2Data),
         (exeFun === AluOr)  -> (op1Data | op2Data),
         (exeFun === AluXor) -> (op1Data ^ op2Data),
+        (exeFun === AluSll) -> (op1Data << op2Data(4, 0))(31, 0),
+        (exeFun === AluSrl) -> (op1Data >> op2Data(4, 0)),
+        (exeFun === AluSra) -> (op1Data.asSInt >> op2Data(4, 0)).asUInt
     ))
 
     // Memory access

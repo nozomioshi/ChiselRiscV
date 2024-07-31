@@ -41,3 +41,23 @@ andi rd, rs1, imm_i
 ori  rd, rs1, imm_i
 xori rd, rs1, imm_i
 ```
+
+## Shift
+
+All the shift instructions use the lower 5 bits of shift amount.
+
+R-Type Instructions.
+
+```asm
+sll rd, rs1, rs2
+srl rd, rs1, rs2
+sra rd, rs1, rs2
+```
+
+I-Type Instructions.
+
+```asm
+slli rd, rs1, shamt
+srli rd, rs1, shamt
+srai rd, rs1, shamt
+```
