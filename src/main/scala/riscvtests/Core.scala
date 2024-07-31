@@ -32,29 +32,52 @@ class Core extends Module {
     val immS = Cat(inst(31, 25), inst(11, 7))
     val immSsext = Cat(Fill(20, immS(11)), immS)
 
+    val controlSignals = ListLookup(inst, List(AluX, Op1Rs1, Op2Rs2),
+        Array(
+            Lw   -> List(AluAdd, Op1Rs1, Op2Imi, MenX, RenS, WbMem),
+            Sw   -> List(AluAdd, Op1Rs1, Op2Ims, MenS, RenX, WbX),
+            Add  -> List(AluAdd, Op1Rs1, Op2Rs2, MenX, RenS, WbAlu),
+            Addi -> List(AluAdd, Op1Rs1, Op2Imi, MenX, RenS, WbAlu),
+            Sub  -> List(AluSub, Op1Rs1, Op2Rs2, MenX, RenS, WbAlu),
+            And  -> List(AluAnd, Op1Rs1, Op2Rs2, MenX, RenS, WbAlu),
+            Or   -> List(AluOr,  Op1Rs1, Op2Rs2, MenX, RenS, WbAlu),
+            Xor  -> List(AluXor, Op1Rs1, Op2Rs2, MenX, RenS, WbAlu),
+            Andi -> List(AluAnd, Op1Rs1, Op2Imi, MenX, RenS, WbAlu),
+            Ori  -> List(AluOr,  Op1Rs1, Op2Imi, MenX, RenS, WbAlu),
+            Xori -> List(AluXor, Op1Rs1, Op2Imi, MenX, RenS, WbAlu)
+        )
+    )
+
+    val exeFun :: op1Sel :: op2Sel :: memWen :: regFileWen :: wbSel :: Nil = controlSignals
+
+    val op1Data = MuxCase(0.U, Seq(
+        (op1Sel === Op1Rs1) -> rs1Data
+    ))
+    val op2Data = MuxCase(0.U, Seq(
+        (op2Sel === Op2Rs2) -> rs2Data,
+        (op2Sel === Op2Imi) -> immIsext,
+        (op2Sel === Op2Ims) -> immSsext
+    ))
+
     // Execute
     val aluOut = MuxCase(0.U, Seq(
-        (inst === Lw || inst === Addi)  -> (rs1Data + immIsext),
-        (inst === Sw)                   -> (rs1Data + immSsext),
-        (inst === Add)                  -> (rs1Data + rs2Data),
-        (inst === Sub)                  -> (rs1Data - rs2Data),
-        (inst === And)                  -> (rs1Data & rs2Data),
-        (inst === Or)                   -> (rs1Data | rs2Data),
-        (inst === Xor)                  -> (rs1Data ^ rs2Data),
-        (inst === Andi)                 -> (rs1Data & immIsext),
-        (inst === Ori)                  -> (rs1Data | immIsext),
-        (inst === Xori)                 -> (rs1Data ^ immIsext)
+        (exeFun === AluAdd) -> (op1Data + op2Data),
+        (exeFun === AluSub) -> (op1Data - op2Data),
+        (exeFun === AluAnd) -> (op1Data & op2Data),
+        (exeFun === AluOr)  -> (op1Data | op2Data),
+        (exeFun === AluXor) -> (op1Data ^ op2Data),
     ))
 
     // Memory access
     dmem.addr := aluOut
-    dmem.wEn := (inst === Sw)
+    dmem.wEn := memWen
     dmem.wData := rs2Data
 
     // Write back
-    val wbData = dmem.data
-    when (inst === Lw|| inst === Addi || inst === Add || inst === Sub ||inst === And || 
-    inst === Or || inst === Xor || inst === Andi || inst === Ori || inst === Xori) {
+    val wbData = MuxCase(aluOut, Seq(
+        (wbSel === WbMem) -> dmem.data
+    ))
+    when(regFileWen === RenS) {
         regFile(wbAddr) := wbData
     }
 
