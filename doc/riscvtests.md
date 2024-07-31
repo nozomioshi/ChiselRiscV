@@ -79,3 +79,31 @@ sltiu rd, rs1, imm_i
 ```
 
 `u` for unsigned.
+
+## Branch
+
+B-Type Instructions.
+
+    [B-Type]
+    +-------------------------------------------------------------------------------------------------+
+    | 31 30 29 28 27 26 25 24 23 22 21 20 19 18 17 16 15 14 13 12 11 10 09 08 07 06 05 04 03 02 01 00 |
+    +---------------------+--------------+--------------+--------+--------------+---------------------+
+    | imm_b(12 + 10:5)    | rs2          | rs1          | funct3 | imm_b(4:1+11)| opcode              |
+    +---------------------+--------------+--------------+--------+--------------+---------------------+
+
+This kind of instructions is very similar to the S-Type instructions.
+
+```asm
+beq  rs1, rs2, offset
+bne  rs1, rs2, offset
+blt  rs1, rs2, offset
+bge  rs1, rs2, offset
+bltu rs1, rs2, offset
+bgeu rs1, rs2, offset
+```
+
+The offset is 12 bits.
+The instruction is 32 bits, while it's 16 bits in compressed instructions.
+Pointer counter must be the multiple of 16(2 bytes).
+Hence, the offset is multiplied by 2.
+At the same time, it can represent larger range.

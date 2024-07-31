@@ -16,7 +16,12 @@ class Core extends Module {
     
     // Fetch
     val pcReg = RegInit(StartAddr)
-    pcReg := pcReg + 4.U
+    val pcPlus4 = pcReg + 4.U
+    val brFlag = Wire(Bool())
+    val brTarget = Wire(UInt(WordLen.W))
+    pcReg := MuxCase(pcPlus4, Seq(
+        brFlag -> brTarget
+    ))
     imem.addr := pcReg
     val inst = imem.inst
 
@@ -31,30 +36,38 @@ class Core extends Module {
     val immIsext = Cat(Fill(20, immI(11)), immI)
     val immS = Cat(inst(31, 25), inst(11, 7))
     val immSsext = Cat(Fill(20, immS(11)), immS)
+    val immB = Cat(inst(31), inst(7), inst(30, 25), inst(11, 8))
+    val immBsext = Cat(Fill(19, immB(11)), immB, 0.U(1.W))
 
     val controlSignals = ListLookup(inst, List(AluX, Op1Rs1, Op2Rs2),
         Array(
-            Lw   -> List(AluAdd,  Op1Rs1, Op2Imi, MenX, RenS, WbMem),
-            Sw   -> List(AluAdd,  Op1Rs1, Op2Ims, MenS, RenX, WbX),
-            Add  -> List(AluAdd,  Op1Rs1, Op2Rs2, MenX, RenS, WbAlu),
-            Addi -> List(AluAdd,  Op1Rs1, Op2Imi, MenX, RenS, WbAlu),
-            Sub  -> List(AluSub,  Op1Rs1, Op2Rs2, MenX, RenS, WbAlu),
-            And  -> List(AluAnd,  Op1Rs1, Op2Rs2, MenX, RenS, WbAlu),
-            Or   -> List(AluOr,   Op1Rs1, Op2Rs2, MenX, RenS, WbAlu),
-            Xor  -> List(AluXor,  Op1Rs1, Op2Rs2, MenX, RenS, WbAlu),
-            Andi -> List(AluAnd,  Op1Rs1, Op2Imi, MenX, RenS, WbAlu),
-            Ori  -> List(AluOr,   Op1Rs1, Op2Imi, MenX, RenS, WbAlu),
-            Xori -> List(AluXor,  Op1Rs1, Op2Imi, MenX, RenS, WbAlu),
-            Sll  -> List(AluSll,  Op1Rs1, Op2Rs2, MenX, RenS, WbAlu),
-            Srl  -> List(AluSrl,  Op1Rs1, Op2Rs2, MenX, RenS, WbAlu),
-            Sra  -> List(AluSra,  Op1Rs1, Op2Rs2, MenX, RenS, WbAlu),
-            Slli -> List(AluSll,  Op1Rs1, Op2Imi, MenX, RenS, WbAlu),
-            Srli -> List(AluSrl,  Op1Rs1, Op2Imi, MenX, RenS, WbAlu),
-            Srai -> List(AluSra,  Op1Rs1, Op2Imi, MenX, RenS, WbAlu),
-            Slt  -> List(AluSlt,  Op1Rs1, Op2Rs2, MenX, RenS, WbAlu),
-            Sltu -> List(AluSltu, Op1Rs1, Op2Rs2, MenX, RenS, WbAlu),
-            Slti -> List(AluSlt,  Op1Rs1, Op2Imi, MenX, RenS, WbAlu),
-            Sltiu-> List(AluSltu, Op1Rs1, Op2Imi, MenX, RenS, WbAlu),
+            Lw    -> List(AluAdd,  Op1Rs1, Op2Imi, MenX, RenS, WbMem),
+            Sw    -> List(AluAdd,  Op1Rs1, Op2Ims, MenS, RenX, WbX),
+            Add   -> List(AluAdd,  Op1Rs1, Op2Rs2, MenX, RenS, WbAlu),
+            Addi  -> List(AluAdd,  Op1Rs1, Op2Imi, MenX, RenS, WbAlu),
+            Sub   -> List(AluSub,  Op1Rs1, Op2Rs2, MenX, RenS, WbAlu),
+            And   -> List(AluAnd,  Op1Rs1, Op2Rs2, MenX, RenS, WbAlu),
+            Or    -> List(AluOr,   Op1Rs1, Op2Rs2, MenX, RenS, WbAlu),
+            Xor   -> List(AluXor,  Op1Rs1, Op2Rs2, MenX, RenS, WbAlu),
+            Andi  -> List(AluAnd,  Op1Rs1, Op2Imi, MenX, RenS, WbAlu),
+            Ori   -> List(AluOr,   Op1Rs1, Op2Imi, MenX, RenS, WbAlu),
+            Xori  -> List(AluXor,  Op1Rs1, Op2Imi, MenX, RenS, WbAlu),
+            Sll   -> List(AluSll,  Op1Rs1, Op2Rs2, MenX, RenS, WbAlu),
+            Srl   -> List(AluSrl,  Op1Rs1, Op2Rs2, MenX, RenS, WbAlu),
+            Sra   -> List(AluSra,  Op1Rs1, Op2Rs2, MenX, RenS, WbAlu),
+            Slli  -> List(AluSll,  Op1Rs1, Op2Imi, MenX, RenS, WbAlu),
+            Srli  -> List(AluSrl,  Op1Rs1, Op2Imi, MenX, RenS, WbAlu),
+            Srai  -> List(AluSra,  Op1Rs1, Op2Imi, MenX, RenS, WbAlu),
+            Slt   -> List(AluSlt,  Op1Rs1, Op2Rs2, MenX, RenS, WbAlu),
+            Sltu  -> List(AluSltu, Op1Rs1, Op2Rs2, MenX, RenS, WbAlu),
+            Slti  -> List(AluSlt,  Op1Rs1, Op2Imi, MenX, RenS, WbAlu),
+            Sltiu -> List(AluSltu, Op1Rs1, Op2Imi, MenX, RenS, WbAlu),
+            Beq   -> List(BrBeq,   Op1Rs1, Op2Rs2, MenX, RenX, WbX),
+            Bne   -> List(BrBne,   Op1Rs1, Op2Rs2, MenX, RenX, WbX),
+            Blt   -> List(BrBlt,   Op1Rs1, Op2Rs2, MenX, RenX, WbX),
+            Bge   -> List(BrBge,   Op1Rs1, Op2Rs2, MenX, RenX, WbX),
+            Bltu  -> List(BrBltu,  Op1Rs1, Op2Rs2, MenX, RenX, WbX),
+            Bgeu  -> List(BrBgeu,  Op1Rs1, Op2Rs2, MenX, RenX, WbX)
         )
     )
 
@@ -82,6 +95,17 @@ class Core extends Module {
         (exeFun === AluSlt) -> (op1Data.asSInt < op2Data.asSInt).asUInt,
         (exeFun === AluSltu)-> (op1Data < op2Data).asUInt
     ))
+
+    brFlag := MuxCase(false.B, Seq(
+        (exeFun === BrBeq)  -> (op1Data === op2Data),
+        (exeFun === BrBne)  -> (op1Data =/= op2Data),
+        (exeFun === BrBlt)  -> (op1Data.asSInt < op2Data.asSInt),
+        (exeFun === BrBge)  -> !(op1Data.asSInt < op2Data.asSInt),
+        (exeFun === BrBltu) -> (op1Data < op2Data),
+        (exeFun === BrBgeu) -> !(op1Data < op2Data)
+    ))
+
+    brTarget := pcReg + immBsext
 
     // Memory access
     dmem.addr := aluOut
