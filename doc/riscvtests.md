@@ -136,3 +136,25 @@ jalr rd, rs1, offset
 ```
 
 The LSB is always set to 0 by `&`.
+
+## Load immediate
+
+U-Type Instructions.
+
+    [U-Type]
+    +-------------------------------------------------------------------------------------------------+
+    | 31 30 29 28 27 26 25 24 23 22 21 20 19 18 17 16 15 14 13 12 11 10 09 08 07 06 05 04 03 02 01 00 |
+    +------------------------------------------------------------+--------------+---------------------+
+    | imm_u(11:5)                                                | rd           | opcode              |
+    +------------------------------------------------------------+--------------+---------------------+
+
+```asm
+lui rd, imm_u
+auipc rd, imm_u
+```
+
+Both the instructions are right-shifted by 12 bits.
+
+AUIPC combined with JAL can jump any relative address within the 32-bit range of the PC.
+
+AUIPC combined with LW/SW can access any relative memory address within the 32-bit range of the PC.

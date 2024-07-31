@@ -47,6 +47,8 @@ class Core extends Module {
     val immBsext = Cat(Fill(19, immB(11)), immB, 0.U(1.W))
     val immJ = Cat(inst(31), inst(19, 12), inst(20), inst(30, 21))
     val immJsext = Cat(Fill(11, immJ(19)), immJ, 0.U(1.W))
+    val immU = inst(31, 12)
+    val immUshifted = Cat(immU, 0.U(12.W))
 
     val controlSignals = ListLookup(inst, List(AluX, Op1Rs1, Op2Rs2),
         Array(
@@ -78,7 +80,9 @@ class Core extends Module {
             Bltu  -> List(BrBltu,  Op1Rs1, Op2Rs2, MenX, RenX, WbX),
             Bgeu  -> List(BrBgeu,  Op1Rs1, Op2Rs2, MenX, RenX, WbX),
             Jal   -> List(AluAdd,  Op1Pc,  Op2Imj, MenX, RenS, WbPc),
-            Jalr  -> List(AluJalr, Op1Rs1, Op2Imi, MenX, RenS, WbPc)
+            Jalr  -> List(AluJalr, Op1Rs1, Op2Imi, MenX, RenS, WbPc),
+            Lui   -> List(AluAdd,  Op1X,   Op2Imu, MenX, RenS, WbAlu),
+            AuiPc -> List(AluAdd,  Op1Pc,  Op2Imu, MenX, RenS, WbAlu)
         )
     )
 
@@ -92,7 +96,8 @@ class Core extends Module {
         (op2Sel === Op2Rs2) -> rs2Data,
         (op2Sel === Op2Imi) -> immIsext,
         (op2Sel === Op2Ims) -> immSsext,
-        (op2Sel === Op2Imj) -> immJsext
+        (op2Sel === Op2Imj) -> immJsext,
+        (op2Sel === Op2Imu) -> immUshifted
     ))
 
     // Execute
