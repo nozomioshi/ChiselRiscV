@@ -34,23 +34,27 @@ class Core extends Module {
 
     val controlSignals = ListLookup(inst, List(AluX, Op1Rs1, Op2Rs2),
         Array(
-            Lw   -> List(AluAdd, Op1Rs1, Op2Imi, MenX, RenS, WbMem),
-            Sw   -> List(AluAdd, Op1Rs1, Op2Ims, MenS, RenX, WbX),
-            Add  -> List(AluAdd, Op1Rs1, Op2Rs2, MenX, RenS, WbAlu),
-            Addi -> List(AluAdd, Op1Rs1, Op2Imi, MenX, RenS, WbAlu),
-            Sub  -> List(AluSub, Op1Rs1, Op2Rs2, MenX, RenS, WbAlu),
-            And  -> List(AluAnd, Op1Rs1, Op2Rs2, MenX, RenS, WbAlu),
-            Or   -> List(AluOr,  Op1Rs1, Op2Rs2, MenX, RenS, WbAlu),
-            Xor  -> List(AluXor, Op1Rs1, Op2Rs2, MenX, RenS, WbAlu),
-            Andi -> List(AluAnd, Op1Rs1, Op2Imi, MenX, RenS, WbAlu),
-            Ori  -> List(AluOr,  Op1Rs1, Op2Imi, MenX, RenS, WbAlu),
-            Xori -> List(AluXor, Op1Rs1, Op2Imi, MenX, RenS, WbAlu),
-            Sll  -> List(AluSll, Op1Rs1, Op2Rs2, MenX, RenS, WbAlu),
-            Srl  -> List(AluSrl, Op1Rs1, Op2Rs2, MenX, RenS, WbAlu),
-            Sra  -> List(AluSra, Op1Rs1, Op2Rs2, MenX, RenS, WbAlu),
-            Slli -> List(AluSll, Op1Rs1, Op2Imi, MenX, RenS, WbAlu),
-            Srli -> List(AluSrl, Op1Rs1, Op2Imi, MenX, RenS, WbAlu),
-            Srai -> List(AluSra, Op1Rs1, Op2Imi, MenX, RenS, WbAlu)
+            Lw   -> List(AluAdd,  Op1Rs1, Op2Imi, MenX, RenS, WbMem),
+            Sw   -> List(AluAdd,  Op1Rs1, Op2Ims, MenS, RenX, WbX),
+            Add  -> List(AluAdd,  Op1Rs1, Op2Rs2, MenX, RenS, WbAlu),
+            Addi -> List(AluAdd,  Op1Rs1, Op2Imi, MenX, RenS, WbAlu),
+            Sub  -> List(AluSub,  Op1Rs1, Op2Rs2, MenX, RenS, WbAlu),
+            And  -> List(AluAnd,  Op1Rs1, Op2Rs2, MenX, RenS, WbAlu),
+            Or   -> List(AluOr,   Op1Rs1, Op2Rs2, MenX, RenS, WbAlu),
+            Xor  -> List(AluXor,  Op1Rs1, Op2Rs2, MenX, RenS, WbAlu),
+            Andi -> List(AluAnd,  Op1Rs1, Op2Imi, MenX, RenS, WbAlu),
+            Ori  -> List(AluOr,   Op1Rs1, Op2Imi, MenX, RenS, WbAlu),
+            Xori -> List(AluXor,  Op1Rs1, Op2Imi, MenX, RenS, WbAlu),
+            Sll  -> List(AluSll,  Op1Rs1, Op2Rs2, MenX, RenS, WbAlu),
+            Srl  -> List(AluSrl,  Op1Rs1, Op2Rs2, MenX, RenS, WbAlu),
+            Sra  -> List(AluSra,  Op1Rs1, Op2Rs2, MenX, RenS, WbAlu),
+            Slli -> List(AluSll,  Op1Rs1, Op2Imi, MenX, RenS, WbAlu),
+            Srli -> List(AluSrl,  Op1Rs1, Op2Imi, MenX, RenS, WbAlu),
+            Srai -> List(AluSra,  Op1Rs1, Op2Imi, MenX, RenS, WbAlu),
+            Slt  -> List(AluSlt,  Op1Rs1, Op2Rs2, MenX, RenS, WbAlu),
+            Sltu -> List(AluSltu, Op1Rs1, Op2Rs2, MenX, RenS, WbAlu),
+            Slti -> List(AluSlt,  Op1Rs1, Op2Imi, MenX, RenS, WbAlu),
+            Sltiu-> List(AluSltu, Op1Rs1, Op2Imi, MenX, RenS, WbAlu),
         )
     )
 
@@ -74,7 +78,9 @@ class Core extends Module {
         (exeFun === AluXor) -> (op1Data ^ op2Data),
         (exeFun === AluSll) -> (op1Data << op2Data(4, 0))(31, 0),
         (exeFun === AluSrl) -> (op1Data >> op2Data(4, 0)),
-        (exeFun === AluSra) -> (op1Data.asSInt >> op2Data(4, 0)).asUInt
+        (exeFun === AluSra) -> (op1Data.asSInt >> op2Data(4, 0)).asUInt,
+        (exeFun === AluSlt) -> (op1Data.asSInt < op2Data.asSInt).asUInt,
+        (exeFun === AluSltu)-> (op1Data < op2Data).asUInt
     ))
 
     // Memory access

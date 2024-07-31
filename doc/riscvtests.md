@@ -61,3 +61,21 @@ slli rd, rs1, shamt
 srli rd, rs1, shamt
 srai rd, rs1, shamt
 ```
+
+## Compare
+
+R-Type Instructions.
+
+```asm
+slt  rd, rs1, rs2
+sltu rd, rs1, rs2
+```
+
+I-Type Instructions.
+
+```asm
+slti  rd, rs1, imm_i
+sltiu rd, rs1, imm_i
+```
+
+`u` for unsigned.
