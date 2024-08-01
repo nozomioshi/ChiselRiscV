@@ -50,7 +50,7 @@ class Core extends Module {
     val immU = inst(31, 12)
     val immUshifted = Cat(immU, 0.U(12.W))
 
-    val controlSignals = ListLookup(inst, List(AluX, Op1Rs1, Op2Rs2),
+    val controlSignals = ListLookup(inst, List(AluX, Op1Rs1, Op2Rs2, MenX, RenS, WbX),
         Array(
             Lw    -> List(AluAdd,  Op1Rs1, Op2Imi, MenX, RenS, WbMem),
             Sw    -> List(AluAdd,  Op1Rs1, Op2Ims, MenS, RenX, WbX),
