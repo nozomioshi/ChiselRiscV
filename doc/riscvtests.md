@@ -158,3 +158,22 @@ Both the instructions are right-shifted by 12 bits.
 AUIPC combined with JAL can jump any relative address within the 32-bit range of the PC.
 
 AUIPC combined with LW/SW can access any relative memory address within the 32-bit range of the PC.
+
+## CSR
+
+I-Type Instructions.
+
+```asm
+csrrw  rd, csr, rs1
+csrrwi rd, csr, imm_z
+csrrs  rd, csr, rs1
+csrrsi rd, csr, imm_z
+csrrc  rd, csr, rs1
+csrrci rd, csr, imm_z
+```
+
+All the CSR instructions are first read the CSR value out, and then operate the CSR value with the source register.
+
+`s` for set, the operated value is ORed with the CSR value.
+
+`c` for clear, the operated value is inverted and ANDed with the CSR value.

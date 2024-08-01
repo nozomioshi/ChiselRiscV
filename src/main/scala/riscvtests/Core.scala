@@ -13,6 +13,7 @@ class Core extends Module {
 
     // Registers
     val regFile = Mem(32, UInt(WordLen.W))
+    val csrRegFile = Mem(4096, UInt(WordLen.W))
     
     // Fetch
     val pcReg = RegInit(StartAddr)
@@ -31,6 +32,7 @@ class Core extends Module {
     imem.addr := pcReg
 
     val inst = imem.inst
+    val csrAddr  = inst(31, 20)
 
     // Decode
     val rs1Addr = inst(19, 15)
@@ -50,43 +52,49 @@ class Core extends Module {
     val immU = inst(31, 12)
     val immUshifted = Cat(immU, 0.U(12.W))
 
-    val controlSignals = ListLookup(inst, List(AluX, Op1Rs1, Op2Rs2, MenX, RenS, WbX),
+    val controlSignals = ListLookup(inst, List(AluX, Op1Rs1, Op2Rs2, MenX, RenS, WbX, CsrX),
         Array(
-            Lw    -> List(AluAdd,  Op1Rs1, Op2Imi, MenX, RenS, WbMem),
-            Sw    -> List(AluAdd,  Op1Rs1, Op2Ims, MenS, RenX, WbX),
-            Add   -> List(AluAdd,  Op1Rs1, Op2Rs2, MenX, RenS, WbAlu),
-            Addi  -> List(AluAdd,  Op1Rs1, Op2Imi, MenX, RenS, WbAlu),
-            Sub   -> List(AluSub,  Op1Rs1, Op2Rs2, MenX, RenS, WbAlu),
-            And   -> List(AluAnd,  Op1Rs1, Op2Rs2, MenX, RenS, WbAlu),
-            Or    -> List(AluOr,   Op1Rs1, Op2Rs2, MenX, RenS, WbAlu),
-            Xor   -> List(AluXor,  Op1Rs1, Op2Rs2, MenX, RenS, WbAlu),
-            Andi  -> List(AluAnd,  Op1Rs1, Op2Imi, MenX, RenS, WbAlu),
-            Ori   -> List(AluOr,   Op1Rs1, Op2Imi, MenX, RenS, WbAlu),
-            Xori  -> List(AluXor,  Op1Rs1, Op2Imi, MenX, RenS, WbAlu),
-            Sll   -> List(AluSll,  Op1Rs1, Op2Rs2, MenX, RenS, WbAlu),
-            Srl   -> List(AluSrl,  Op1Rs1, Op2Rs2, MenX, RenS, WbAlu),
-            Sra   -> List(AluSra,  Op1Rs1, Op2Rs2, MenX, RenS, WbAlu),
-            Slli  -> List(AluSll,  Op1Rs1, Op2Imi, MenX, RenS, WbAlu),
-            Srli  -> List(AluSrl,  Op1Rs1, Op2Imi, MenX, RenS, WbAlu),
-            Srai  -> List(AluSra,  Op1Rs1, Op2Imi, MenX, RenS, WbAlu),
-            Slt   -> List(AluSlt,  Op1Rs1, Op2Rs2, MenX, RenS, WbAlu),
-            Sltu  -> List(AluSltu, Op1Rs1, Op2Rs2, MenX, RenS, WbAlu),
-            Slti  -> List(AluSlt,  Op1Rs1, Op2Imi, MenX, RenS, WbAlu),
-            Sltiu -> List(AluSltu, Op1Rs1, Op2Imi, MenX, RenS, WbAlu),
-            Beq   -> List(BrBeq,   Op1Rs1, Op2Rs2, MenX, RenX, WbX),
-            Bne   -> List(BrBne,   Op1Rs1, Op2Rs2, MenX, RenX, WbX),
-            Blt   -> List(BrBlt,   Op1Rs1, Op2Rs2, MenX, RenX, WbX),
-            Bge   -> List(BrBge,   Op1Rs1, Op2Rs2, MenX, RenX, WbX),
-            Bltu  -> List(BrBltu,  Op1Rs1, Op2Rs2, MenX, RenX, WbX),
-            Bgeu  -> List(BrBgeu,  Op1Rs1, Op2Rs2, MenX, RenX, WbX),
-            Jal   -> List(AluAdd,  Op1Pc,  Op2Imj, MenX, RenS, WbPc),
-            Jalr  -> List(AluJalr, Op1Rs1, Op2Imi, MenX, RenS, WbPc),
-            Lui   -> List(AluAdd,  Op1X,   Op2Imu, MenX, RenS, WbAlu),
-            AuiPc -> List(AluAdd,  Op1Pc,  Op2Imu, MenX, RenS, WbAlu)
+            Lw     -> List(AluAdd,   Op1Rs1, Op2Imi, MenX, RenS, WbMem, CsrX),
+            Sw     -> List(AluAdd,   Op1Rs1, Op2Ims, MenS, RenX, WbX,   CsrX),
+            Add    -> List(AluAdd,   Op1Rs1, Op2Rs2, MenX, RenS, WbAlu, CsrX),
+            Addi   -> List(AluAdd,   Op1Rs1, Op2Imi, MenX, RenS, WbAlu, CsrX),
+            Sub    -> List(AluSub,   Op1Rs1, Op2Rs2, MenX, RenS, WbAlu, CsrX),
+            And    -> List(AluAnd,   Op1Rs1, Op2Rs2, MenX, RenS, WbAlu, CsrX),
+            Or     -> List(AluOr,    Op1Rs1, Op2Rs2, MenX, RenS, WbAlu, CsrX),
+            Xor    -> List(AluXor,   Op1Rs1, Op2Rs2, MenX, RenS, WbAlu, CsrX),
+            Andi   -> List(AluAnd,   Op1Rs1, Op2Imi, MenX, RenS, WbAlu, CsrX),
+            Ori    -> List(AluOr,    Op1Rs1, Op2Imi, MenX, RenS, WbAlu, CsrX),
+            Xori   -> List(AluXor,   Op1Rs1, Op2Imi, MenX, RenS, WbAlu, CsrX),
+            Sll    -> List(AluSll,   Op1Rs1, Op2Rs2, MenX, RenS, WbAlu, CsrX),
+            Srl    -> List(AluSrl,   Op1Rs1, Op2Rs2, MenX, RenS, WbAlu, CsrX),
+            Sra    -> List(AluSra,   Op1Rs1, Op2Rs2, MenX, RenS, WbAlu, CsrX),
+            Slli   -> List(AluSll,   Op1Rs1, Op2Imi, MenX, RenS, WbAlu, CsrX),
+            Srli   -> List(AluSrl,   Op1Rs1, Op2Imi, MenX, RenS, WbAlu, CsrX),
+            Srai   -> List(AluSra,   Op1Rs1, Op2Imi, MenX, RenS, WbAlu, CsrX),
+            Slt    -> List(AluSlt,   Op1Rs1, Op2Rs2, MenX, RenS, WbAlu, CsrX),
+            Sltu   -> List(AluSltu,  Op1Rs1, Op2Rs2, MenX, RenS, WbAlu, CsrX),
+            Slti   -> List(AluSlt,   Op1Rs1, Op2Imi, MenX, RenS, WbAlu, CsrX),
+            Sltiu  -> List(AluSltu,  Op1Rs1, Op2Imi, MenX, RenS, WbAlu, CsrX),
+            Beq    -> List(BrBeq,    Op1Rs1, Op2Rs2, MenX, RenX, WbX,   CsrX),
+            Bne    -> List(BrBne,    Op1Rs1, Op2Rs2, MenX, RenX, WbX,   CsrX),
+            Blt    -> List(BrBlt,    Op1Rs1, Op2Rs2, MenX, RenX, WbX,   CsrX),
+            Bge    -> List(BrBge,    Op1Rs1, Op2Rs2, MenX, RenX, WbX,   CsrX),
+            Bltu   -> List(BrBltu,   Op1Rs1, Op2Rs2, MenX, RenX, WbX,   CsrX),
+            Bgeu   -> List(BrBgeu,   Op1Rs1, Op2Rs2, MenX, RenX, WbX,   CsrX),
+            Jal    -> List(AluAdd,   Op1Pc,  Op2Imj, MenX, RenS, WbPc,  CsrX),
+            Jalr   -> List(AluJalr,  Op1Rs1, Op2Imi, MenX, RenS, WbPc,  CsrX),
+            Lui    -> List(AluAdd,   Op1X,   Op2Imu, MenX, RenS, WbCsr, CsrX),
+            AuiPc  -> List(AluAdd,   Op1Pc,  Op2Imu, MenX, RenS, WbCsr, CsrX),
+            CsrRw  -> List(AluCopy1, Op1Rs1, Op2X,   MenX, RenS, WbCsr, CsrW),
+            CsrRs  -> List(AluCopy1, Op1Rs1, Op2X,   MenX, RenS, WbCsr, CsrS),
+            CsrRc  -> List(AluCopy1, Op1Rs1, Op2X,   MenX, RenS, WbCsr, CsrC),
+            CsrRwi -> List(AluCopy1, Op1Imz, Op2X,   MenX, RenS, WbCsr, CsrW),
+            CsrRsi -> List(AluCopy1, Op1Imz, Op2X,   MenX, RenS, WbCsr, CsrS),
+            CsrRci -> List(AluCopy1, Op1Imz, Op2X,   MenX, RenS, WbCsr, CsrC)
         )
     )
 
-    val exeFun :: op1Sel :: op2Sel :: memWen :: regFileWen :: wbSel :: Nil = controlSignals
+    val exeFun :: op1Sel :: op2Sel :: memWen :: regFileWen :: wbSel :: csrCmd :: Nil = controlSignals
 
     val op1Data = MuxCase(0.U, Seq(
         (op1Sel === Op1Rs1) -> rs1Data,
@@ -102,17 +110,18 @@ class Core extends Module {
 
     // Execute
     aluOut := MuxCase(0.U, Seq(
-        (exeFun === AluAdd)  -> (op1Data + op2Data),
-        (exeFun === AluSub)  -> (op1Data - op2Data),
-        (exeFun === AluAnd)  -> (op1Data & op2Data),
-        (exeFun === AluOr)   -> (op1Data | op2Data),
-        (exeFun === AluXor)  -> (op1Data ^ op2Data),
-        (exeFun === AluSll)  -> (op1Data << op2Data(4, 0))(31, 0),
-        (exeFun === AluSrl)  -> (op1Data >> op2Data(4, 0)),
-        (exeFun === AluSra)  -> (op1Data.asSInt >> op2Data(4, 0)).asUInt,
-        (exeFun === AluSlt)  -> (op1Data.asSInt < op2Data.asSInt).asUInt,
-        (exeFun === AluSltu) -> (op1Data < op2Data).asUInt,
-        (exeFun === AluJalr) -> ((op1Data + op2Data) & ~1.U)
+        (exeFun === AluAdd)   -> (op1Data + op2Data),
+        (exeFun === AluSub)   -> (op1Data - op2Data),
+        (exeFun === AluAnd)   -> (op1Data & op2Data),
+        (exeFun === AluOr)    -> (op1Data | op2Data),
+        (exeFun === AluXor)   -> (op1Data ^ op2Data),
+        (exeFun === AluSll)   -> (op1Data << op2Data(4, 0))(31, 0),
+        (exeFun === AluSrl)   -> (op1Data >> op2Data(4, 0)),
+        (exeFun === AluSra)   -> (op1Data.asSInt >> op2Data(4, 0)).asUInt,
+        (exeFun === AluSlt)   -> (op1Data.asSInt < op2Data.asSInt).asUInt,
+        (exeFun === AluSltu)  -> (op1Data < op2Data).asUInt,
+        (exeFun === AluJalr)  -> ((op1Data + op2Data) & ~1.U),
+        (exeFun === AluCopy1) -> op1Data
     ))
 
     brFlag := MuxCase(false.B, Seq(
@@ -127,14 +136,25 @@ class Core extends Module {
     brTarget := pcReg + immBsext
 
     // Memory access
-    dmem.addr := aluOut
-    dmem.wEn := memWen
+    dmem.addr  := aluOut
+    dmem.wEn   := memWen
     dmem.wData := rs2Data
+
+    val csrRdata = csrRegFile(csrAddr)
+    val csrWdata = MuxCase(0.U, Seq(
+        (csrCmd === CsrW) -> op1Data,
+        (csrCmd === CsrS) -> (csrRdata | op1Data),
+        (csrCmd === CsrC) -> (csrRdata & ~op1Data)
+    ))
+    when(csrCmd > 0.U) {
+        csrRegFile(csrAddr) := csrWdata
+    }
 
     // Write back
     val wbData = MuxCase(aluOut, Seq(
         (wbSel === WbMem) -> dmem.data,
-        (wbSel === WbPc)  -> pcPlus4
+        (wbSel === WbPc)  -> pcPlus4,
+        (wbSel === WbCsr) -> csrRdata
     ))
     when(regFileWen === RenS) {
         regFile(wbAddr) := wbData
