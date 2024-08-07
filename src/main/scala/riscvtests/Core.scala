@@ -9,6 +9,7 @@ import common.Instructions._
 class Core extends Module {
     val imem = IO(Flipped(new ImemPortIo))
     val dmem = IO(Flipped(new DmemPortIo))
+    val gp   = IO(Output(UInt(WordLen.W)))
     val exit = IO(Output(Bool()))
 
     // Registers
@@ -165,10 +166,12 @@ class Core extends Module {
     }
 
     // Debugging
-    exit := (inst === 0x00602823.U)
+    gp   := regFile(3)
+    exit := (pcReg === 0x44.U)
 
     printf(cf"pcReg      : 0x${Hexadecimal(pcReg)}\n")
     printf(cf"inst       : 0x${Hexadecimal(inst)}\n")
+    printf(cf"gp         : ${regFile(3)}\n")
     printf(cf"rs1Addr    : ${Decimal(rs1Addr)}\n")
     printf(cf"rs2Addr    : ${Decimal(rs2Addr)}\n")
     printf(cf"wbAddr     : ${Decimal(wbAddr)}\n")

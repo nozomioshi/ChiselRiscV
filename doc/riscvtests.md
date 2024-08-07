@@ -1,8 +1,10 @@
 # [riscvtests](../src/main/scala/riscvtests)
 
-## Arithmetic
+## Instructions
 
-### AddSub
+### Arithmetic
+
+#### AddSub
 
 R-Type Instructions.
 
@@ -18,7 +20,7 @@ add rd, rs1, rs2
 sub rd, rs1, rs2
 ```
 
-### Addi
+#### Addi
 
 I-Type Instruction.
 
@@ -26,7 +28,7 @@ I-Type Instruction.
 addi rd, rs1, imm_i
 ```
 
-## Logical
+### Logical
 
 R-Type Instructions.
 
@@ -44,7 +46,7 @@ ori  rd, rs1, imm_i
 xori rd, rs1, imm_i
 ```
 
-## Shift
+### Shift
 
 All the shift instructions use the lower 5 bits of shift amount.
 
@@ -64,7 +66,7 @@ srli rd, rs1, shamt
 srai rd, rs1, shamt
 ```
 
-## Compare
+### Compare
 
 R-Type Instructions.
 
@@ -82,7 +84,7 @@ sltiu rd, rs1, imm_i
 
 `u` for unsigned.
 
-## Branch
+### Branch
 
 B-Type Instructions.
 
@@ -110,7 +112,7 @@ Pointer counter must be the multiple of 16(2 bytes).
 Hence, the offset is multiplied by 2.
 At the same time, it can represent larger range.
 
-## Jump
+### Jump
 
 All jump instructions writes `PC+4` to Rd.
 
@@ -137,7 +139,7 @@ jalr rd, rs1, offset
 
 The LSB is always set to 0 by `&`.
 
-## Load immediate
+### Load immediate
 
 U-Type Instructions.
 
@@ -159,7 +161,7 @@ AUIPC combined with JAL can jump any relative address within the 32-bit range of
 
 AUIPC combined with LW/SW can access any relative memory address within the 32-bit range of the PC.
 
-## CSR
+### CSR
 
 I-Type Instructions.
 
@@ -178,7 +180,7 @@ All the CSR instructions are first read the CSR value out, and then operate the 
 
 `c` for clear, the operated value is inverted and ANDed with the CSR value.
 
-## ECALL
+### ECALL
 
 ECALL is short for Environment Call.
 
@@ -194,7 +196,7 @@ When an exception is raised, ECALL calls the OS.
 
 First, the value according to the CPU mode is written to the `mcause` register.
 
-RSIC-V has 4 privilege levels which is encoded in the `mcause` register.
+RSIC-V has 4 privilege levels which is encoded in the mcause register.
 
 | Level | Encoding | Mode       |
 | :-:   | :-:      | :-:        |
@@ -205,3 +207,76 @@ RSIC-V has 4 privilege levels which is encoded in the `mcause` register.
 
 Then, PC jumps to the trap_vector stored in the `mtvec` register(0x305).
 The trap_vector describes the OS call when the exception is raised.
+
+## Test
+
+### RSIC-V tests
+
+Generate the test elf and the dump files.
+
+Change the start address in the linked data file `/usr/local/riscv/riscv-tests/env/p/link.ld`.
+
+```
+OUTPUT_ARCH( "riscv" )
+ENTRY(_start)
+
+SECTIONS
+{
+  . = 0x00000000;
+  .text.init : { *(.text.init) }
+  . = ALIGN(0x1000);
+  .tohost : { *(.tohost) }
+  . = ALIGN(0x1000);
+  .text : { *(.text) }
+  . = ALIGN(0x1000);
+  .data : { *(.data) }
+  .bss : { *(.bss) }
+  _end = .;
+}
+```
+
+```bash
+cd /usr/local/riscv/riscv-tests
+autoconf
+./configure --prefix=/src/target
+make
+make install
+```
+
+Comment out the following code in `./target/share/riscv-tests/isa/.gitignore`.
+
+```
+rv*-*
+```
+
+### Compile
+
+Convert the elf file to bin file.
+
+```bash
+mkdir /src/src/test/resources/riscv
+cd /src/src/test/resources/riscv
+riscv64-unknown-elf-objcopy -O binary /src/target/share/riscv-tests/isa/rv32ui-p-add rv32ui-p-add.bin
+```
+
+Convert the bin file to hex file.
+
+```bash
+od -An -tx1 -w1 -v rv32ui-p-add.bin >> rv32ui-p-add.hex
+```
+
+- -A, --address-radix=RADIX   output format for file offsets; RADIX is one of [doxn], for Decimal, Octal, Hex or None
+- -t, --format=TYPE           select output format or formats
+- -w[BYTES], --width[=BYTES]  output BYTES bytes per output line; 32 is implied when BYTES is not specified
+- -v, --output-duplicates     do not use * to mark line suppression
+
+```
+TYPE is made up of one or more of these specifications:
+  a          named character, ignoring high-order bit
+  c          printable character or backslash escape
+  d[SIZE]    signed decimal, SIZE bytes per integer
+  f[SIZE]    floating point, SIZE bytes per float
+  o[SIZE]    octal, SIZE bytes per integer
+  u[SIZE]    unsigned decimal, SIZE bytes per integer
+  x[SIZE]    hexadecimal, SIZE bytes per integer
+```
