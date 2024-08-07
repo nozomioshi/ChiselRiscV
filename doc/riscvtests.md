@@ -177,3 +177,31 @@ All the CSR instructions are first read the CSR value out, and then operate the 
 `s` for set, the operated value is ORed with the CSR value.
 
 `c` for clear, the operated value is inverted and ANDed with the CSR value.
+
+## ECALL
+
+ECALL is short for Environment Call.
+
+I-Type Instruction.
+
+```asm
+ecall
+```
+
+But ECALL's high 25 bits are 0s.
+
+When an exception is raised, ECALL calls the OS.
+
+First, the value according to the CPU mode is written to the `mcause` register.
+
+RSIC-V has 4 privilege levels which is encoded in the `mcause` register.
+
+| Level | Encoding | Mode       |
+| :-:   | :-:      | :-:        |
+| 0     | 8        | User       |
+| 1     | 9        | Supervisor |
+| 2     | 10       | Hypervisor |
+| 3     | 11       | Machine    |
+
+Then, PC jumps to the trap_vector stored in the `mtvec` register(0x305).
+The trap_vector describes the OS call when the exception is raised.

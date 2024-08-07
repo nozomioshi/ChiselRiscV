@@ -22,17 +22,19 @@ class Core extends Module {
     val brFlag = Wire(Bool())
     val brTarget = Wire(UInt(WordLen.W))
 
-    val jmpFlag = inst === Jal || inst === Jalr
+    val jmpFlag   = inst === Jal || inst === Jalr
+    val eCallFlag = inst === Ecall
 
     val aluOut = Wire(UInt(WordLen.W))
     pcReg := MuxCase(pcPlus4, Seq(
-        brFlag  -> brTarget,
-        jmpFlag -> aluOut
+        brFlag    -> brTarget,
+        jmpFlag   -> aluOut,
+        eCallFlag -> csrRegFile(0x305) // Trap vector
     ))
     imem.addr := pcReg
 
     val inst = imem.inst
-    val csrAddr  = inst(31, 20)
+    val csrAddr = Mux(csrCmd === CsrE, 0x342.U, inst(31, 20)) // mcause: 0x342
 
     // Decode
     val rs1Addr = inst(19, 15)
@@ -41,15 +43,15 @@ class Core extends Module {
     val rs1Data = Mux(rs1Addr =/= 0.U, regFile(rs1Addr), 0.U)
     val rs2Data = Mux(rs2Addr =/= 0.U, regFile(rs2Addr), 0.U)
 
-    val immI = inst(31, 20)
-    val immIsext = Cat(Fill(20, immI(11)), immI)
-    val immS = Cat(inst(31, 25), inst(11, 7))
-    val immSsext = Cat(Fill(20, immS(11)), immS)
-    val immB = Cat(inst(31), inst(7), inst(30, 25), inst(11, 8))
-    val immBsext = Cat(Fill(19, immB(11)), immB, 0.U(1.W))
-    val immJ = Cat(inst(31), inst(19, 12), inst(20), inst(30, 21))
-    val immJsext = Cat(Fill(11, immJ(19)), immJ, 0.U(1.W))
-    val immU = inst(31, 12)
+    val immI        = inst(31, 20)
+    val immIsext    = Cat(Fill(20, immI(11)), immI)
+    val immS        = Cat(inst(31, 25), inst(11, 7))
+    val immSsext    = Cat(Fill(20, immS(11)), immS)
+    val immB        = Cat(inst(31), inst(7), inst(30, 25), inst(11, 8))
+    val immBsext    = Cat(Fill(19, immB(11)), immB, 0.U(1.W))
+    val immJ        = Cat(inst(31), inst(19, 12), inst(20), inst(30, 21))
+    val immJsext    = Cat(Fill(11, immJ(19)), immJ, 0.U(1.W))
+    val immU        = inst(31, 12)
     val immUshifted = Cat(immU, 0.U(12.W))
 
     val controlSignals = ListLookup(inst, List(AluX, Op1Rs1, Op2Rs2, MenX, RenS, WbX, CsrX),
@@ -90,7 +92,8 @@ class Core extends Module {
             CsrRc  -> List(AluCopy1, Op1Rs1, Op2X,   MenX, RenS, WbCsr, CsrC),
             CsrRwi -> List(AluCopy1, Op1Imz, Op2X,   MenX, RenS, WbCsr, CsrW),
             CsrRsi -> List(AluCopy1, Op1Imz, Op2X,   MenX, RenS, WbCsr, CsrS),
-            CsrRci -> List(AluCopy1, Op1Imz, Op2X,   MenX, RenS, WbCsr, CsrC)
+            CsrRci -> List(AluCopy1, Op1Imz, Op2X,   MenX, RenS, WbCsr, CsrC),
+            Ecall  -> List(AluX,     Op1X,   Op2X,   MenX, RenX, WbX,   CsrE)
         )
     )
 
@@ -144,7 +147,8 @@ class Core extends Module {
     val csrWdata = MuxCase(0.U, Seq(
         (csrCmd === CsrW) -> op1Data,
         (csrCmd === CsrS) -> (csrRdata | op1Data),
-        (csrCmd === CsrC) -> (csrRdata & ~op1Data)
+        (csrCmd === CsrC) -> (csrRdata & ~op1Data),
+        (csrCmd === CsrE) -> 11.U // Machine ECALL
     ))
     when(csrCmd > 0.U) {
         csrRegFile(csrAddr) := csrWdata
