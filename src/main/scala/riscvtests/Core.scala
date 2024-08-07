@@ -32,7 +32,7 @@ class Core extends Module {
     pcReg := MuxCase(pcPlus4, Seq(
         brFlag    -> brTarget,
         jmpFlag   -> aluOut,
-        eCallFlag -> csrRegFile(0x305) // Trap vector
+        eCallFlag -> csrRegFile(0x305.U) // Trap vector
     ))
     imem.addr := pcReg
 
@@ -85,8 +85,8 @@ class Core extends Module {
             Bgeu   -> List(BrBgeu,   Op1Rs1, Op2Rs2, MenX, RenX, WbX,   CsrX),
             Jal    -> List(AluAdd,   Op1Pc,  Op2Imj, MenX, RenS, WbPc,  CsrX),
             Jalr   -> List(AluJalr,  Op1Rs1, Op2Imi, MenX, RenS, WbPc,  CsrX),
-            Lui    -> List(AluAdd,   Op1X,   Op2Imu, MenX, RenS, WbCsr, CsrX),
-            AuiPc  -> List(AluAdd,   Op1Pc,  Op2Imu, MenX, RenS, WbCsr, CsrX),
+            Lui    -> List(AluAdd,   Op1X,   Op2Imu, MenX, RenS, WbAlu, CsrX),
+            AuiPc  -> List(AluAdd,   Op1Pc,  Op2Imu, MenX, RenS, WbAlu, CsrX),
             CsrRw  -> List(AluCopy1, Op1Rs1, Op2X,   MenX, RenS, WbCsr, CsrW),
             CsrRs  -> List(AluCopy1, Op1Rs1, Op2X,   MenX, RenS, WbCsr, CsrS),
             CsrRc  -> List(AluCopy1, Op1Rs1, Op2X,   MenX, RenS, WbCsr, CsrC),

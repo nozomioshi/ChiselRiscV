@@ -17,6 +17,7 @@ class RiscvTest extends AnyFlatSpec with ChiselScalatestTester {
                 while(!dut.exit.peek().litToBoolean) {
                     dut.clock.step()
                 }
+                dut.clock.step()
                 dut.gp.expect(1.U)
             }
         }
