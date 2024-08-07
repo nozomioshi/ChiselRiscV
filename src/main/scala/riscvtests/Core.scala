@@ -20,6 +20,8 @@ class Core extends Module {
     val pcReg = RegInit(StartAddr)
     val pcPlus4 = pcReg + 4.U
 
+    val inst = imem.inst
+
     val brFlag = Wire(Bool())
     val brTarget = Wire(UInt(WordLen.W))
 
@@ -33,9 +35,6 @@ class Core extends Module {
         eCallFlag -> csrRegFile(0x305) // Trap vector
     ))
     imem.addr := pcReg
-
-    val inst = imem.inst
-    val csrAddr = Mux(csrCmd === CsrE, 0x342.U, inst(31, 20)) // mcause: 0x342
 
     // Decode
     val rs1Addr = inst(19, 15)
@@ -144,6 +143,7 @@ class Core extends Module {
     dmem.wEn   := memWen
     dmem.wData := rs2Data
 
+    val csrAddr = Mux(csrCmd === CsrE, 0x342.U, inst(31, 20)) // mcause: 0x342
     val csrRdata = csrRegFile(csrAddr)
     val csrWdata = MuxCase(0.U, Seq(
         (csrCmd === CsrW) -> op1Data,
