@@ -123,7 +123,7 @@ class Core extends Module {
         (exeFun === AluSra)   -> (op1Data.asSInt >> op2Data(4, 0)).asUInt,
         (exeFun === AluSlt)   -> (op1Data.asSInt < op2Data.asSInt).asUInt,
         (exeFun === AluSltu)  -> (op1Data < op2Data).asUInt,
-        (exeFun === AluJalr)  -> ((op1Data + op2Data) & ~1.U),
+        (exeFun === AluJalr)  -> ((op1Data + op2Data) & ~1.U(WordLen.W)),
         (exeFun === AluCopy1) -> op1Data
     ))
 
