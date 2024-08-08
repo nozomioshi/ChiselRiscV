@@ -53,6 +53,8 @@ class Core extends Module {
     val immJsext    = Cat(Fill(11, immJ(19)), immJ, 0.U(1.W))
     val immU        = inst(31, 12)
     val immUshifted = Cat(immU, 0.U(12.W))
+    val immZ        = inst(19, 15)
+    val immZext     = Cat(Fill(27, 0.U), immZ)
 
     val controlSignals = ListLookup(inst, List(AluX, Op1Rs1, Op2Rs2, MenX, RenS, WbX, CsrX),
         Array(
@@ -101,7 +103,8 @@ class Core extends Module {
 
     val op1Data = MuxCase(0.U, Seq(
         (op1Sel === Op1Rs1) -> rs1Data,
-        (op1Sel === Op1Pc)  -> pcReg
+        (op1Sel === Op1Pc)  -> pcReg,
+        (op1Sel === Op1Imz) -> immZext
     ))
     val op2Data = MuxCase(0.U, Seq(
         (op2Sel === Op2Rs2) -> rs2Data,
@@ -171,12 +174,13 @@ class Core extends Module {
 
     printf(cf"pcReg      : 0x${Hexadecimal(pcReg)}\n")
     printf(cf"inst       : 0x${Hexadecimal(inst)}\n")
+    printf(cf"exeFun     : ${exeFun}\n")
     printf(cf"gp         : ${regFile(3)}\n")
     printf(cf"rs1Addr    : ${Decimal(rs1Addr)}\n")
     printf(cf"rs2Addr    : ${Decimal(rs2Addr)}\n")
     printf(cf"wbAddr     : ${Decimal(wbAddr)}\n")
-    printf(cf"rs1Data    : 0x${Hexadecimal(rs1Data)}\n")
-    printf(cf"rs2Data    : 0x${Hexadecimal(rs2Data)}\n")
+    printf(cf"op1Data    : 0x${Hexadecimal(op1Data)}\n")
+    printf(cf"op2Data    : 0x${Hexadecimal(op2Data)}\n")
     printf(cf"wbData     : 0x${Hexadecimal(wbData)}\n")
     printf(cf"dmem.addr  : ${Decimal(dmem.addr)}\n")
     printf(cf"dmem.wEn   : ${dmem.wEn}\n")

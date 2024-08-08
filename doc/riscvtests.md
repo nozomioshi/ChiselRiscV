@@ -222,16 +222,16 @@ ENTRY(_start)
 
 SECTIONS
 {
-  . = 0x00000000;
-  .text.init : { *(.text.init) }
-  . = ALIGN(0x1000);
-  .tohost : { *(.tohost) }
-  . = ALIGN(0x1000);
-  .text : { *(.text) }
-  . = ALIGN(0x1000);
-  .data : { *(.data) }
-  .bss : { *(.bss) }
-  _end = .;
+    . = 0x00000000;
+    .text.init : { *(.text.init) }
+    . = ALIGN(0x1000);
+    .tohost : { *(.tohost) }
+    . = ALIGN(0x1000);
+    .text : { *(.text) }
+    . = ALIGN(0x1000);
+    .data : { *(.data) }
+    .bss : { *(.bss) }
+    _end = .;
 }
 ```
 
@@ -285,4 +285,15 @@ TYPE is made up of one or more of these specifications:
 
 There should be 7 instructions failed in the test.
 
-SH, LHU, FENCE_I, LB, SB, LH, LBU.
+> SH, LHU, FENCE_I, LB, SB, LH, LBU
+
+As a result, the test is filtered by the following code.
+
+```scala
+filter => {
+    val f = filter.toString()
+    f.endsWith(".hex") &&
+    (f.contains("ui-p") || f.contains("mi-p-csr") || f.contains("mi-p-scall")) &&
+    !(f.contains("sh") || f.contains("lhu") || f.contains("fence_i") || f.contains("lb") || f.contains("sb") || f.contains("lh") || f.contains("lbu"))
+}
+```

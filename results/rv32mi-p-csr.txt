@@ -1,11 +1,12 @@
 pcReg      : 0x00000000
 inst       : 0x04c0006f
+exeFun     :   1
 gp         :           0
 rs1Addr    :   0
 rs2Addr    :  12
 wbAddr     :   0
-rs1Data    : 0x00000000
-rs2Data    : 0x00000000
+op1Data    : 0x00000000
+op2Data    : 0x0000004c
 wbData     : 0x00000004
 dmem.addr  :          76
 dmem.wEn   :  0
@@ -13,12 +14,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x0000004c
 inst       : 0x00000093
+exeFun     :   1
 gp         :           0
 rs1Addr    :   0
 rs2Addr    :   0
 wbAddr     :   1
-rs1Data    : 0x00000000
-rs2Data    : 0x00000000
+op1Data    : 0x00000000
+op2Data    : 0x00000000
 wbData     : 0x00000000
 dmem.addr  :           0
 dmem.wEn   :  0
@@ -26,12 +28,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x00000050
 inst       : 0x00000113
+exeFun     :   1
 gp         :           0
 rs1Addr    :   0
 rs2Addr    :   0
 wbAddr     :   2
-rs1Data    : 0x00000000
-rs2Data    : 0x00000000
+op1Data    : 0x00000000
+op2Data    : 0x00000000
 wbData     : 0x00000000
 dmem.addr  :           0
 dmem.wEn   :  0
@@ -39,12 +42,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x00000054
 inst       : 0x00000193
+exeFun     :   1
 gp         :           0
 rs1Addr    :   0
 rs2Addr    :   0
 wbAddr     :   3
-rs1Data    : 0x00000000
-rs2Data    : 0x00000000
+op1Data    : 0x00000000
+op2Data    : 0x00000000
 wbData     : 0x00000000
 dmem.addr  :           0
 dmem.wEn   :  0
@@ -52,12 +56,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x00000058
 inst       : 0x00000213
+exeFun     :   1
 gp         :           0
 rs1Addr    :   0
 rs2Addr    :   0
 wbAddr     :   4
-rs1Data    : 0x00000000
-rs2Data    : 0x00000000
+op1Data    : 0x00000000
+op2Data    : 0x00000000
 wbData     : 0x00000000
 dmem.addr  :           0
 dmem.wEn   :  0
@@ -65,12 +70,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x0000005c
 inst       : 0x00000293
+exeFun     :   1
 gp         :           0
 rs1Addr    :   0
 rs2Addr    :   0
 wbAddr     :   5
-rs1Data    : 0x00000000
-rs2Data    : 0x00000000
+op1Data    : 0x00000000
+op2Data    : 0x00000000
 wbData     : 0x00000000
 dmem.addr  :           0
 dmem.wEn   :  0
@@ -78,12 +84,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x00000060
 inst       : 0x00000313
+exeFun     :   1
 gp         :           0
 rs1Addr    :   0
 rs2Addr    :   0
 wbAddr     :   6
-rs1Data    : 0x00000000
-rs2Data    : 0x00000000
+op1Data    : 0x00000000
+op2Data    : 0x00000000
 wbData     : 0x00000000
 dmem.addr  :           0
 dmem.wEn   :  0
@@ -91,12 +98,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x00000064
 inst       : 0x00000393
+exeFun     :   1
 gp         :           0
 rs1Addr    :   0
 rs2Addr    :   0
 wbAddr     :   7
-rs1Data    : 0x00000000
-rs2Data    : 0x00000000
+op1Data    : 0x00000000
+op2Data    : 0x00000000
 wbData     : 0x00000000
 dmem.addr  :           0
 dmem.wEn   :  0
@@ -104,12 +112,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x00000068
 inst       : 0x00000413
+exeFun     :   1
 gp         :           0
 rs1Addr    :   0
 rs2Addr    :   0
 wbAddr     :   8
-rs1Data    : 0x00000000
-rs2Data    : 0x00000000
+op1Data    : 0x00000000
+op2Data    : 0x00000000
 wbData     : 0x00000000
 dmem.addr  :           0
 dmem.wEn   :  0
@@ -117,12 +126,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x0000006c
 inst       : 0x00000493
+exeFun     :   1
 gp         :           0
 rs1Addr    :   0
 rs2Addr    :   0
 wbAddr     :   9
-rs1Data    : 0x00000000
-rs2Data    : 0x00000000
+op1Data    : 0x00000000
+op2Data    : 0x00000000
 wbData     : 0x00000000
 dmem.addr  :           0
 dmem.wEn   :  0
@@ -130,12 +140,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x00000070
 inst       : 0x00000513
+exeFun     :   1
 gp         :           0
 rs1Addr    :   0
 rs2Addr    :   0
 wbAddr     :  10
-rs1Data    : 0x00000000
-rs2Data    : 0x00000000
+op1Data    : 0x00000000
+op2Data    : 0x00000000
 wbData     : 0x00000000
 dmem.addr  :           0
 dmem.wEn   :  0
@@ -143,12 +154,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x00000074
 inst       : 0x00000593
+exeFun     :   1
 gp         :           0
 rs1Addr    :   0
 rs2Addr    :   0
 wbAddr     :  11
-rs1Data    : 0x00000000
-rs2Data    : 0x00000000
+op1Data    : 0x00000000
+op2Data    : 0x00000000
 wbData     : 0x00000000
 dmem.addr  :           0
 dmem.wEn   :  0
@@ -156,12 +168,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x00000078
 inst       : 0x00000613
+exeFun     :   1
 gp         :           0
 rs1Addr    :   0
 rs2Addr    :   0
 wbAddr     :  12
-rs1Data    : 0x00000000
-rs2Data    : 0x00000000
+op1Data    : 0x00000000
+op2Data    : 0x00000000
 wbData     : 0x00000000
 dmem.addr  :           0
 dmem.wEn   :  0
@@ -169,12 +182,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x0000007c
 inst       : 0x00000693
+exeFun     :   1
 gp         :           0
 rs1Addr    :   0
 rs2Addr    :   0
 wbAddr     :  13
-rs1Data    : 0x00000000
-rs2Data    : 0x00000000
+op1Data    : 0x00000000
+op2Data    : 0x00000000
 wbData     : 0x00000000
 dmem.addr  :           0
 dmem.wEn   :  0
@@ -182,12 +196,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x00000080
 inst       : 0x00000713
+exeFun     :   1
 gp         :           0
 rs1Addr    :   0
 rs2Addr    :   0
 wbAddr     :  14
-rs1Data    : 0x00000000
-rs2Data    : 0x00000000
+op1Data    : 0x00000000
+op2Data    : 0x00000000
 wbData     : 0x00000000
 dmem.addr  :           0
 dmem.wEn   :  0
@@ -195,12 +210,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x00000084
 inst       : 0x00000793
+exeFun     :   1
 gp         :           0
 rs1Addr    :   0
 rs2Addr    :   0
 wbAddr     :  15
-rs1Data    : 0x00000000
-rs2Data    : 0x00000000
+op1Data    : 0x00000000
+op2Data    : 0x00000000
 wbData     : 0x00000000
 dmem.addr  :           0
 dmem.wEn   :  0
@@ -208,12 +224,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x00000088
 inst       : 0x00000813
+exeFun     :   1
 gp         :           0
 rs1Addr    :   0
 rs2Addr    :   0
 wbAddr     :  16
-rs1Data    : 0x00000000
-rs2Data    : 0x00000000
+op1Data    : 0x00000000
+op2Data    : 0x00000000
 wbData     : 0x00000000
 dmem.addr  :           0
 dmem.wEn   :  0
@@ -221,12 +238,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x0000008c
 inst       : 0x00000893
+exeFun     :   1
 gp         :           0
 rs1Addr    :   0
 rs2Addr    :   0
 wbAddr     :  17
-rs1Data    : 0x00000000
-rs2Data    : 0x00000000
+op1Data    : 0x00000000
+op2Data    : 0x00000000
 wbData     : 0x00000000
 dmem.addr  :           0
 dmem.wEn   :  0
@@ -234,12 +252,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x00000090
 inst       : 0x00000913
+exeFun     :   1
 gp         :           0
 rs1Addr    :   0
 rs2Addr    :   0
 wbAddr     :  18
-rs1Data    : 0x00000000
-rs2Data    : 0x00000000
+op1Data    : 0x00000000
+op2Data    : 0x00000000
 wbData     : 0x00000000
 dmem.addr  :           0
 dmem.wEn   :  0
@@ -247,12 +266,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x00000094
 inst       : 0x00000993
+exeFun     :   1
 gp         :           0
 rs1Addr    :   0
 rs2Addr    :   0
 wbAddr     :  19
-rs1Data    : 0x00000000
-rs2Data    : 0x00000000
+op1Data    : 0x00000000
+op2Data    : 0x00000000
 wbData     : 0x00000000
 dmem.addr  :           0
 dmem.wEn   :  0
@@ -260,12 +280,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x00000098
 inst       : 0x00000a13
+exeFun     :   1
 gp         :           0
 rs1Addr    :   0
 rs2Addr    :   0
 wbAddr     :  20
-rs1Data    : 0x00000000
-rs2Data    : 0x00000000
+op1Data    : 0x00000000
+op2Data    : 0x00000000
 wbData     : 0x00000000
 dmem.addr  :           0
 dmem.wEn   :  0
@@ -273,12 +294,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x0000009c
 inst       : 0x00000a93
+exeFun     :   1
 gp         :           0
 rs1Addr    :   0
 rs2Addr    :   0
 wbAddr     :  21
-rs1Data    : 0x00000000
-rs2Data    : 0x00000000
+op1Data    : 0x00000000
+op2Data    : 0x00000000
 wbData     : 0x00000000
 dmem.addr  :           0
 dmem.wEn   :  0
@@ -286,12 +308,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x000000a0
 inst       : 0x00000b13
+exeFun     :   1
 gp         :           0
 rs1Addr    :   0
 rs2Addr    :   0
 wbAddr     :  22
-rs1Data    : 0x00000000
-rs2Data    : 0x00000000
+op1Data    : 0x00000000
+op2Data    : 0x00000000
 wbData     : 0x00000000
 dmem.addr  :           0
 dmem.wEn   :  0
@@ -299,12 +322,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x000000a4
 inst       : 0x00000b93
+exeFun     :   1
 gp         :           0
 rs1Addr    :   0
 rs2Addr    :   0
 wbAddr     :  23
-rs1Data    : 0x00000000
-rs2Data    : 0x00000000
+op1Data    : 0x00000000
+op2Data    : 0x00000000
 wbData     : 0x00000000
 dmem.addr  :           0
 dmem.wEn   :  0
@@ -312,12 +336,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x000000a8
 inst       : 0x00000c13
+exeFun     :   1
 gp         :           0
 rs1Addr    :   0
 rs2Addr    :   0
 wbAddr     :  24
-rs1Data    : 0x00000000
-rs2Data    : 0x00000000
+op1Data    : 0x00000000
+op2Data    : 0x00000000
 wbData     : 0x00000000
 dmem.addr  :           0
 dmem.wEn   :  0
@@ -325,12 +350,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x000000ac
 inst       : 0x00000c93
+exeFun     :   1
 gp         :           0
 rs1Addr    :   0
 rs2Addr    :   0
 wbAddr     :  25
-rs1Data    : 0x00000000
-rs2Data    : 0x00000000
+op1Data    : 0x00000000
+op2Data    : 0x00000000
 wbData     : 0x00000000
 dmem.addr  :           0
 dmem.wEn   :  0
@@ -338,12 +364,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x000000b0
 inst       : 0x00000d13
+exeFun     :   1
 gp         :           0
 rs1Addr    :   0
 rs2Addr    :   0
 wbAddr     :  26
-rs1Data    : 0x00000000
-rs2Data    : 0x00000000
+op1Data    : 0x00000000
+op2Data    : 0x00000000
 wbData     : 0x00000000
 dmem.addr  :           0
 dmem.wEn   :  0
@@ -351,12 +378,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x000000b4
 inst       : 0x00000d93
+exeFun     :   1
 gp         :           0
 rs1Addr    :   0
 rs2Addr    :   0
 wbAddr     :  27
-rs1Data    : 0x00000000
-rs2Data    : 0x00000000
+op1Data    : 0x00000000
+op2Data    : 0x00000000
 wbData     : 0x00000000
 dmem.addr  :           0
 dmem.wEn   :  0
@@ -364,12 +392,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x000000b8
 inst       : 0x00000e13
+exeFun     :   1
 gp         :           0
 rs1Addr    :   0
 rs2Addr    :   0
 wbAddr     :  28
-rs1Data    : 0x00000000
-rs2Data    : 0x00000000
+op1Data    : 0x00000000
+op2Data    : 0x00000000
 wbData     : 0x00000000
 dmem.addr  :           0
 dmem.wEn   :  0
@@ -377,12 +406,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x000000bc
 inst       : 0x00000e93
+exeFun     :   1
 gp         :           0
 rs1Addr    :   0
 rs2Addr    :   0
 wbAddr     :  29
-rs1Data    : 0x00000000
-rs2Data    : 0x00000000
+op1Data    : 0x00000000
+op2Data    : 0x00000000
 wbData     : 0x00000000
 dmem.addr  :           0
 dmem.wEn   :  0
@@ -390,12 +420,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x000000c0
 inst       : 0x00000f13
+exeFun     :   1
 gp         :           0
 rs1Addr    :   0
 rs2Addr    :   0
 wbAddr     :  30
-rs1Data    : 0x00000000
-rs2Data    : 0x00000000
+op1Data    : 0x00000000
+op2Data    : 0x00000000
 wbData     : 0x00000000
 dmem.addr  :           0
 dmem.wEn   :  0
@@ -403,12 +434,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x000000c4
 inst       : 0x00000f93
+exeFun     :   1
 gp         :           0
 rs1Addr    :   0
 rs2Addr    :   0
 wbAddr     :  31
-rs1Data    : 0x00000000
-rs2Data    : 0x00000000
+op1Data    : 0x00000000
+op2Data    : 0x00000000
 wbData     : 0x00000000
 dmem.addr  :           0
 dmem.wEn   :  0
@@ -416,12 +448,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x000000c8
 inst       : 0xf1402573
+exeFun     :  18
 gp         :           0
 rs1Addr    :   0
 rs2Addr    :  20
 wbAddr     :  10
-rs1Data    : 0x00000000
-rs2Data    : 0x00000000
+op1Data    : 0x00000000
+op2Data    : 0x00000000
 wbData     : 0x00000000
 dmem.addr  :           0
 dmem.wEn   :  0
@@ -429,12 +462,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x000000cc
 inst       : 0x00051063
+exeFun     :  12
 gp         :           0
 rs1Addr    :  10
 rs2Addr    :   0
 wbAddr     :   0
-rs1Data    : 0x00000000
-rs2Data    : 0x00000000
+op1Data    : 0x00000000
+op2Data    : 0x00000000
 wbData     : 0x00000000
 dmem.addr  :           0
 dmem.wEn   :  0
@@ -442,12 +476,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x000000d0
 inst       : 0x00000297
+exeFun     :   1
 gp         :           0
 rs1Addr    :   0
 rs2Addr    :   0
 wbAddr     :   5
-rs1Data    : 0x00000000
-rs2Data    : 0x00000000
+op1Data    : 0x000000d0
+op2Data    : 0x00000000
 wbData     : 0x000000d0
 dmem.addr  :         208
 dmem.wEn   :  0
@@ -455,12 +490,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x000000d4
 inst       : 0x01028293
+exeFun     :   1
 gp         :           0
 rs1Addr    :   5
 rs2Addr    :  16
 wbAddr     :   5
-rs1Data    : 0x000000d0
-rs2Data    : 0x00000000
+op1Data    : 0x000000d0
+op2Data    : 0x00000010
 wbData     : 0x000000e0
 dmem.addr  :         224
 dmem.wEn   :  0
@@ -468,12 +504,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x000000d8
 inst       : 0x30529073
+exeFun     :  18
 gp         :           0
 rs1Addr    :   5
 rs2Addr    :   5
 wbAddr     :   0
-rs1Data    : 0x000000e0
-rs2Data    : 0x000000e0
+op1Data    : 0x000000e0
+op2Data    : 0x00000000
 wbData     : 0x00000000
 dmem.addr  :         224
 dmem.wEn   :  0
@@ -481,12 +518,13 @@ dmem.wData : 0x000000e0
 -----------------
 pcReg      : 0x000000dc
 inst       : 0x18005073
+exeFun     :  18
 gp         :           0
 rs1Addr    :   0
 rs2Addr    :   0
 wbAddr     :   0
-rs1Data    : 0x00000000
-rs2Data    : 0x00000000
+op1Data    : 0x00000000
+op2Data    : 0x00000000
 wbData     : 0x00000000
 dmem.addr  :           0
 dmem.wEn   :  0
@@ -494,12 +532,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x000000e0
 inst       : 0x00000297
+exeFun     :   1
 gp         :           0
 rs1Addr    :   0
 rs2Addr    :   0
 wbAddr     :   5
-rs1Data    : 0x00000000
-rs2Data    : 0x00000000
+op1Data    : 0x000000e0
+op2Data    : 0x00000000
 wbData     : 0x000000e0
 dmem.addr  :         224
 dmem.wEn   :  0
@@ -507,12 +546,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x000000e4
 inst       : 0x02028293
+exeFun     :   1
 gp         :           0
 rs1Addr    :   5
 rs2Addr    :   0
 wbAddr     :   5
-rs1Data    : 0x000000e0
-rs2Data    : 0x00000000
+op1Data    : 0x000000e0
+op2Data    : 0x00000020
 wbData     : 0x00000100
 dmem.addr  :         256
 dmem.wEn   :  0
@@ -520,12 +560,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x000000e8
 inst       : 0x30529073
+exeFun     :  18
 gp         :           0
 rs1Addr    :   5
 rs2Addr    :   5
 wbAddr     :   0
-rs1Data    : 0x00000100
-rs2Data    : 0x00000100
+op1Data    : 0x00000100
+op2Data    : 0x00000000
 wbData     : 0x000000e0
 dmem.addr  :         256
 dmem.wEn   :  0
@@ -533,12 +574,13 @@ dmem.wData : 0x00000100
 -----------------
 pcReg      : 0x000000ec
 inst       : 0x800002b7
+exeFun     :   1
 gp         :           0
 rs1Addr    :   0
 rs2Addr    :   0
 wbAddr     :   5
-rs1Data    : 0x00000000
-rs2Data    : 0x00000000
+op1Data    : 0x00000000
+op2Data    : 0x80000000
 wbData     : 0x80000000
 dmem.addr  :  2147483648
 dmem.wEn   :  0
@@ -546,12 +588,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x000000f0
 inst       : 0xfff28293
+exeFun     :   1
 gp         :           0
 rs1Addr    :   5
 rs2Addr    :  31
 wbAddr     :   5
-rs1Data    : 0x80000000
-rs2Data    : 0x00000000
+op1Data    : 0x80000000
+op2Data    : 0xffffffff
 wbData     : 0x7fffffff
 dmem.addr  :  2147483647
 dmem.wEn   :  0
@@ -559,12 +602,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x000000f4
 inst       : 0x3b029073
+exeFun     :  18
 gp         :           0
 rs1Addr    :   5
 rs2Addr    :  16
 wbAddr     :   0
-rs1Data    : 0x7fffffff
-rs2Data    : 0x00000000
+op1Data    : 0x7fffffff
+op2Data    : 0x00000000
 wbData     : 0x00000000
 dmem.addr  :  2147483647
 dmem.wEn   :  0
@@ -572,12 +616,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x000000f8
 inst       : 0x01f00293
+exeFun     :   1
 gp         :           0
 rs1Addr    :   0
 rs2Addr    :  31
 wbAddr     :   5
-rs1Data    : 0x00000000
-rs2Data    : 0x00000000
+op1Data    : 0x00000000
+op2Data    : 0x0000001f
 wbData     : 0x0000001f
 dmem.addr  :          31
 dmem.wEn   :  0
@@ -585,12 +630,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x000000fc
 inst       : 0x3a029073
+exeFun     :  18
 gp         :           0
 rs1Addr    :   5
 rs2Addr    :   0
 wbAddr     :   0
-rs1Data    : 0x0000001f
-rs2Data    : 0x00000000
+op1Data    : 0x0000001f
+op2Data    : 0x00000000
 wbData     : 0x00000000
 dmem.addr  :          31
 dmem.wEn   :  0
@@ -598,12 +644,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x00000100
 inst       : 0x30405073
+exeFun     :  18
 gp         :           0
 rs1Addr    :   0
 rs2Addr    :   4
 wbAddr     :   0
-rs1Data    : 0x00000000
-rs2Data    : 0x00000000
+op1Data    : 0x00000000
+op2Data    : 0x00000000
 wbData     : 0x00000000
 dmem.addr  :           0
 dmem.wEn   :  0
@@ -611,12 +658,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x00000104
 inst       : 0x00000297
+exeFun     :   1
 gp         :           0
 rs1Addr    :   0
 rs2Addr    :   0
 wbAddr     :   5
-rs1Data    : 0x00000000
-rs2Data    : 0x00000000
+op1Data    : 0x00000104
+op2Data    : 0x00000000
 wbData     : 0x00000104
 dmem.addr  :         260
 dmem.wEn   :  0
@@ -624,12 +672,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x00000108
 inst       : 0x01428293
+exeFun     :   1
 gp         :           0
 rs1Addr    :   5
 rs2Addr    :  20
 wbAddr     :   5
-rs1Data    : 0x00000104
-rs2Data    : 0x00000000
+op1Data    : 0x00000104
+op2Data    : 0x00000014
 wbData     : 0x00000118
 dmem.addr  :         280
 dmem.wEn   :  0
@@ -637,12 +686,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x0000010c
 inst       : 0x30529073
+exeFun     :  18
 gp         :           0
 rs1Addr    :   5
 rs2Addr    :   5
 wbAddr     :   0
-rs1Data    : 0x00000118
-rs2Data    : 0x00000118
+op1Data    : 0x00000118
+op2Data    : 0x00000000
 wbData     : 0x00000100
 dmem.addr  :         280
 dmem.wEn   :  0
@@ -650,12 +700,13 @@ dmem.wData : 0x00000118
 -----------------
 pcReg      : 0x00000110
 inst       : 0x30205073
+exeFun     :  18
 gp         :           0
 rs1Addr    :   0
 rs2Addr    :   2
 wbAddr     :   0
-rs1Data    : 0x00000000
-rs2Data    : 0x00000000
+op1Data    : 0x00000000
+op2Data    : 0x00000000
 wbData     : 0x00000000
 dmem.addr  :           0
 dmem.wEn   :  0
@@ -663,12 +714,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x00000114
 inst       : 0x30305073
+exeFun     :  18
 gp         :           0
 rs1Addr    :   0
 rs2Addr    :   3
 wbAddr     :   0
-rs1Data    : 0x00000000
-rs2Data    : 0x00000000
+op1Data    : 0x00000000
+op2Data    : 0x00000000
 wbData     : 0x00000000
 dmem.addr  :           0
 dmem.wEn   :  0
@@ -676,12 +728,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x00000118
 inst       : 0x00000193
+exeFun     :   1
 gp         :           0
 rs1Addr    :   0
 rs2Addr    :   0
 wbAddr     :   3
-rs1Data    : 0x00000000
-rs2Data    : 0x00000000
+op1Data    : 0x00000000
+op2Data    : 0x00000000
 wbData     : 0x00000000
 dmem.addr  :           0
 dmem.wEn   :  0
@@ -689,12 +742,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x0000011c
 inst       : 0x00000297
+exeFun     :   1
 gp         :           0
 rs1Addr    :   0
 rs2Addr    :   0
 wbAddr     :   5
-rs1Data    : 0x00000000
-rs2Data    : 0x00000000
+op1Data    : 0x0000011c
+op2Data    : 0x00000000
 wbData     : 0x0000011c
 dmem.addr  :         284
 dmem.wEn   :  0
@@ -702,12 +756,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x00000120
 inst       : 0xee828293
+exeFun     :   1
 gp         :           0
 rs1Addr    :   5
 rs2Addr    :   8
 wbAddr     :   5
-rs1Data    : 0x0000011c
-rs2Data    : 0x00000000
+op1Data    : 0x0000011c
+op2Data    : 0xfffffee8
 wbData     : 0x00000004
 dmem.addr  :           4
 dmem.wEn   :  0
@@ -715,12 +770,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x00000124
 inst       : 0x30529073
+exeFun     :  18
 gp         :           0
 rs1Addr    :   5
 rs2Addr    :   5
 wbAddr     :   0
-rs1Data    : 0x00000004
-rs2Data    : 0x00000004
+op1Data    : 0x00000004
+op2Data    : 0x00000000
 wbData     : 0x00000118
 dmem.addr  :           4
 dmem.wEn   :  0
@@ -728,12 +784,13 @@ dmem.wData : 0x00000004
 -----------------
 pcReg      : 0x00000128
 inst       : 0x00100513
+exeFun     :   1
 gp         :           0
 rs1Addr    :   0
 rs2Addr    :   1
 wbAddr     :  10
-rs1Data    : 0x00000000
-rs2Data    : 0x00000000
+op1Data    : 0x00000000
+op2Data    : 0x00000001
 wbData     : 0x00000001
 dmem.addr  :           1
 dmem.wEn   :  0
@@ -741,12 +798,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x0000012c
 inst       : 0x01f51513
+exeFun     :   6
 gp         :           0
 rs1Addr    :  10
 rs2Addr    :  31
 wbAddr     :  10
-rs1Data    : 0x00000001
-rs2Data    : 0x00000000
+op1Data    : 0x00000001
+op2Data    : 0x0000001f
 wbData     : 0x80000000
 dmem.addr  :  2147483648
 dmem.wEn   :  0
@@ -754,12 +812,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x00000130
 inst       : 0x00054c63
+exeFun     :  13
 gp         :           0
 rs1Addr    :  10
 rs2Addr    :   0
 wbAddr     :  24
-rs1Data    : 0x80000000
-rs2Data    : 0x00000000
+op1Data    : 0x80000000
+op2Data    : 0x00000000
 wbData     : 0x00000000
 dmem.addr  :           0
 dmem.wEn   :  0
@@ -767,12 +826,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x00000148
 inst       : 0x00000293
+exeFun     :   1
 gp         :           0
 rs1Addr    :   0
 rs2Addr    :   0
 wbAddr     :   5
-rs1Data    : 0x00000000
-rs2Data    : 0x00000000
+op1Data    : 0x00000000
+op2Data    : 0x00000000
 wbData     : 0x00000000
 dmem.addr  :           0
 dmem.wEn   :  0
@@ -780,12 +840,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x0000014c
 inst       : 0x00028a63
+exeFun     :  11
 gp         :           0
 rs1Addr    :   5
 rs2Addr    :   0
 wbAddr     :  20
-rs1Data    : 0x00000000
-rs2Data    : 0x00000000
+op1Data    : 0x00000000
+op2Data    : 0x00000000
 wbData     : 0x00000000
 dmem.addr  :           0
 dmem.wEn   :  0
@@ -793,12 +854,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x00000160
 inst       : 0x30005073
+exeFun     :  18
 gp         :           0
 rs1Addr    :   0
 rs2Addr    :   0
 wbAddr     :   0
-rs1Data    : 0x00000000
-rs2Data    : 0x00000000
+op1Data    : 0x00000000
+op2Data    : 0x00000000
 wbData     : 0x00000000
 dmem.addr  :           0
 dmem.wEn   :  0
@@ -806,12 +868,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x00000164
 inst       : 0x00002537
+exeFun     :   1
 gp         :           0
 rs1Addr    :   0
 rs2Addr    :   0
 wbAddr     :  10
-rs1Data    : 0x00000000
-rs2Data    : 0x00000000
+op1Data    : 0x00000000
+op2Data    : 0x00002000
 wbData     : 0x00002000
 dmem.addr  :        8192
 dmem.wEn   :  0
@@ -819,12 +882,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x00000168
 inst       : 0x80050513
+exeFun     :   1
 gp         :           0
 rs1Addr    :  10
 rs2Addr    :   0
 wbAddr     :  10
-rs1Data    : 0x00002000
-rs2Data    : 0x00000000
+op1Data    : 0x00002000
+op2Data    : 0xfffff800
 wbData     : 0x00001800
 dmem.addr  :        6144
 dmem.wEn   :  0
@@ -832,12 +896,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x0000016c
 inst       : 0x30052073
+exeFun     :  18
 gp         :           0
 rs1Addr    :  10
 rs2Addr    :   0
 wbAddr     :   0
-rs1Data    : 0x00001800
-rs2Data    : 0x00000000
+op1Data    : 0x00001800
+op2Data    : 0x00000000
 wbData     : 0x00000000
 dmem.addr  :        6144
 dmem.wEn   :  0
@@ -845,12 +910,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x00000170
 inst       : 0x00000297
+exeFun     :   1
 gp         :           0
 rs1Addr    :   0
 rs2Addr    :   0
 wbAddr     :   5
-rs1Data    : 0x00000000
-rs2Data    : 0x00000000
+op1Data    : 0x00000170
+op2Data    : 0x00000000
 wbData     : 0x00000170
 dmem.addr  :         368
 dmem.wEn   :  0
@@ -858,12 +924,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x00000174
 inst       : 0x01428293
+exeFun     :   1
 gp         :           0
 rs1Addr    :   5
 rs2Addr    :  20
 wbAddr     :   5
-rs1Data    : 0x00000170
-rs2Data    : 0x00000000
+op1Data    : 0x00000170
+op2Data    : 0x00000014
 wbData     : 0x00000184
 dmem.addr  :         388
 dmem.wEn   :  0
@@ -871,12 +938,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x00000178
 inst       : 0x34129073
+exeFun     :  18
 gp         :           0
 rs1Addr    :   5
 rs2Addr    :   1
 wbAddr     :   0
-rs1Data    : 0x00000184
-rs2Data    : 0x00000000
+op1Data    : 0x00000184
+op2Data    : 0x00000000
 wbData     : 0x00000000
 dmem.addr  :         388
 dmem.wEn   :  0
@@ -884,12 +952,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x0000017c
 inst       : 0xf1402573
+exeFun     :  18
 gp         :           0
 rs1Addr    :   0
 rs2Addr    :  20
 wbAddr     :  10
-rs1Data    : 0x00000000
-rs2Data    : 0x00000000
+op1Data    : 0x00000000
+op2Data    : 0x00000000
 wbData     : 0x00000000
 dmem.addr  :           0
 dmem.wEn   :  0
@@ -897,12 +966,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x00000180
 inst       : 0x30200073
+exeFun     :   0
 gp         :           0
 rs1Addr    :   0
 rs2Addr    :   2
 wbAddr     :   0
-rs1Data    : 0x00000000
-rs2Data    : 0x00000000
+op1Data    : 0x00000000
+op2Data    : 0x00000000
 wbData     : 0x00000000
 dmem.addr  :           0
 dmem.wEn   :  0
@@ -910,12 +980,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x00000184
 inst       : 0x34001073
+exeFun     :  18
 gp         :           0
 rs1Addr    :   0
 rs2Addr    :   0
 wbAddr     :   0
-rs1Data    : 0x00000000
-rs2Data    : 0x00000000
+op1Data    : 0x00000000
+op2Data    : 0x00000000
 wbData     : 0x00000000
 dmem.addr  :           0
 dmem.wEn   :  0
@@ -923,12 +994,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x00000188
 inst       : 0x34002573
+exeFun     :  18
 gp         :           0
 rs1Addr    :   0
 rs2Addr    :   0
 wbAddr     :  10
-rs1Data    : 0x00000000
-rs2Data    : 0x00000000
+op1Data    : 0x00000000
+op2Data    : 0x00000000
 wbData     : 0x00000000
 dmem.addr  :           0
 dmem.wEn   :  0
@@ -936,12 +1008,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x0000018c
 inst       : 0x00000393
+exeFun     :   1
 gp         :           0
 rs1Addr    :   0
 rs2Addr    :   0
 wbAddr     :   7
-rs1Data    : 0x00000000
-rs2Data    : 0x00000000
+op1Data    : 0x00000000
+op2Data    : 0x00000000
 wbData     : 0x00000000
 dmem.addr  :           0
 dmem.wEn   :  0
@@ -949,12 +1022,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x00000190
 inst       : 0x01400193
+exeFun     :   1
 gp         :           0
 rs1Addr    :   0
 rs2Addr    :  20
 wbAddr     :   3
-rs1Data    : 0x00000000
-rs2Data    : 0x00000000
+op1Data    : 0x00000000
+op2Data    : 0x00000014
 wbData     : 0x00000014
 dmem.addr  :          20
 dmem.wEn   :  0
@@ -962,12 +1036,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x00000194
 inst       : 0x1a751863
+exeFun     :  12
 gp         :          20
 rs1Addr    :  10
 rs2Addr    :   7
 wbAddr     :  16
-rs1Data    : 0x00000000
-rs2Data    : 0x00000000
+op1Data    : 0x00000000
+op2Data    : 0x00000000
 wbData     : 0x00000000
 dmem.addr  :           0
 dmem.wEn   :  0
@@ -975,12 +1050,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x00000198
 inst       : 0x34005573
+exeFun     :  18
 gp         :          20
 rs1Addr    :   0
 rs2Addr    :   0
 wbAddr     :  10
-rs1Data    : 0x00000000
-rs2Data    : 0x00000000
+op1Data    : 0x00000000
+op2Data    : 0x00000000
 wbData     : 0x00000000
 dmem.addr  :           0
 dmem.wEn   :  0
@@ -988,25 +1064,27 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x0000019c
 inst       : 0x3407d573
+exeFun     :  18
 gp         :          20
 rs1Addr    :  15
 rs2Addr    :   0
 wbAddr     :  10
-rs1Data    : 0x00000000
-rs2Data    : 0x00000000
+op1Data    : 0x0000000f
+op2Data    : 0x00000000
 wbData     : 0x00000000
-dmem.addr  :           0
+dmem.addr  :          15
 dmem.wEn   :  0
 dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x000001a0
 inst       : 0x00000393
+exeFun     :   1
 gp         :          20
 rs1Addr    :   0
 rs2Addr    :   0
 wbAddr     :   7
-rs1Data    : 0x00000000
-rs2Data    : 0x00000000
+op1Data    : 0x00000000
+op2Data    : 0x00000000
 wbData     : 0x00000000
 dmem.addr  :           0
 dmem.wEn   :  0
@@ -1014,12 +1092,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x000001a4
 inst       : 0x01500193
+exeFun     :   1
 gp         :          20
 rs1Addr    :   0
 rs2Addr    :  21
 wbAddr     :   3
-rs1Data    : 0x00000000
-rs2Data    : 0x00000000
+op1Data    : 0x00000000
+op2Data    : 0x00000015
 wbData     : 0x00000015
 dmem.addr  :          21
 dmem.wEn   :  0
@@ -1027,12 +1106,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x000001a8
 inst       : 0x18751e63
+exeFun     :  12
 gp         :          21
 rs1Addr    :  10
 rs2Addr    :   7
 wbAddr     :  28
-rs1Data    : 0x00000000
-rs2Data    : 0x00000000
+op1Data    : 0x00000000
+op2Data    : 0x00000000
 wbData     : 0x00000000
 dmem.addr  :           0
 dmem.wEn   :  0
@@ -1040,38 +1120,41 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x000001ac
 inst       : 0x3401d073
+exeFun     :  18
 gp         :          21
 rs1Addr    :   3
 rs2Addr    :   0
 wbAddr     :   0
-rs1Data    : 0x00000015
-rs2Data    : 0x00000000
-wbData     : 0x00000000
-dmem.addr  :           0
+op1Data    : 0x00000003
+op2Data    : 0x00000000
+wbData     : 0x0000000f
+dmem.addr  :           3
 dmem.wEn   :  0
 dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x000001b0
 inst       : 0x34002573
+exeFun     :  18
 gp         :          21
 rs1Addr    :   0
 rs2Addr    :   0
 wbAddr     :  10
-rs1Data    : 0x00000000
-rs2Data    : 0x00000000
-wbData     : 0x00000000
+op1Data    : 0x00000000
+op2Data    : 0x00000000
+wbData     : 0x00000003
 dmem.addr  :           0
 dmem.wEn   :  0
 dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x000001b4
 inst       : 0x00300393
+exeFun     :   1
 gp         :          21
 rs1Addr    :   0
 rs2Addr    :   3
 wbAddr     :   7
-rs1Data    : 0x00000000
-rs2Data    : 0x00000015
+op1Data    : 0x00000000
+op2Data    : 0x00000003
 wbData     : 0x00000003
 dmem.addr  :           3
 dmem.wEn   :  0
@@ -1079,12 +1162,13 @@ dmem.wData : 0x00000015
 -----------------
 pcReg      : 0x000001b8
 inst       : 0x00200193
+exeFun     :   1
 gp         :          21
 rs1Addr    :   0
 rs2Addr    :   2
 wbAddr     :   3
-rs1Data    : 0x00000000
-rs2Data    : 0x00000000
+op1Data    : 0x00000000
+op2Data    : 0x00000002
 wbData     : 0x00000002
 dmem.addr  :           2
 dmem.wEn   :  0
@@ -1092,103 +1176,965 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x000001bc
 inst       : 0x18751463
+exeFun     :  12
 gp         :           2
 rs1Addr    :  10
 rs2Addr    :   7
 wbAddr     :   8
-rs1Data    : 0x00000000
-rs2Data    : 0x00000003
+op1Data    : 0x00000003
+op2Data    : 0x00000003
 wbData     : 0x00000000
 dmem.addr  :           0
 dmem.wEn   :  0
 dmem.wData : 0x00000003
 -----------------
-pcReg      : 0x00000344
-inst       : 0x0ff0000f
+pcReg      : 0x000001c0
+inst       : 0x3400f5f3
+exeFun     :  18
+gp         :           2
+rs1Addr    :   1
+rs2Addr    :   0
+wbAddr     :  11
+op1Data    : 0x00000001
+op2Data    : 0x00000000
+wbData     : 0x00000003
+dmem.addr  :           1
+dmem.wEn   :  0
+dmem.wData : 0x00000000
+-----------------
+pcReg      : 0x000001c4
+inst       : 0x00300393
+exeFun     :   1
 gp         :           2
 rs1Addr    :   0
-rs2Addr    :  31
-wbAddr     :   0
-rs1Data    : 0x00000000
-rs2Data    : 0x00000000
-wbData     : 0x00000000
-dmem.addr  :           0
+rs2Addr    :   3
+wbAddr     :   7
+op1Data    : 0x00000000
+op2Data    : 0x00000003
+wbData     : 0x00000003
+dmem.addr  :           3
 dmem.wEn   :  0
-dmem.wData : 0x00000000
+dmem.wData : 0x00000002
 -----------------
-pcReg      : 0x00000348
-inst       : 0x00018063
+pcReg      : 0x000001c8
+inst       : 0x00300193
+exeFun     :   1
 gp         :           2
-rs1Addr    :   3
-rs2Addr    :   0
-wbAddr     :   0
-rs1Data    : 0x00000002
-rs2Data    : 0x00000000
-wbData     : 0x00000000
-dmem.addr  :           0
-dmem.wEn   :  0
-dmem.wData : 0x00000000
------------------
-pcReg      : 0x0000034c
-inst       : 0x00119193
-gp         :           2
-rs1Addr    :   3
-rs2Addr    :   1
+rs1Addr    :   0
+rs2Addr    :   3
 wbAddr     :   3
-rs1Data    : 0x00000002
-rs2Data    : 0x00000000
+op1Data    : 0x00000000
+op2Data    : 0x00000003
+wbData     : 0x00000003
+dmem.addr  :           3
+dmem.wEn   :  0
+dmem.wData : 0x00000002
+-----------------
+pcReg      : 0x000001cc
+inst       : 0x16759c63
+exeFun     :  12
+gp         :           3
+rs1Addr    :  11
+rs2Addr    :   7
+wbAddr     :  24
+op1Data    : 0x00000003
+op2Data    : 0x00000003
+wbData     : 0x00000000
+dmem.addr  :           0
+dmem.wEn   :  0
+dmem.wData : 0x00000003
+-----------------
+pcReg      : 0x000001d0
+inst       : 0x34026673
+exeFun     :  18
+gp         :           3
+rs1Addr    :   4
+rs2Addr    :   0
+wbAddr     :  12
+op1Data    : 0x00000004
+op2Data    : 0x00000000
+wbData     : 0x00000002
+dmem.addr  :           4
+dmem.wEn   :  0
+dmem.wData : 0x00000000
+-----------------
+pcReg      : 0x000001d4
+inst       : 0x00200393
+exeFun     :   1
+gp         :           3
+rs1Addr    :   0
+rs2Addr    :   2
+wbAddr     :   7
+op1Data    : 0x00000000
+op2Data    : 0x00000002
+wbData     : 0x00000002
+dmem.addr  :           2
+dmem.wEn   :  0
+dmem.wData : 0x00000000
+-----------------
+pcReg      : 0x000001d8
+inst       : 0x00400193
+exeFun     :   1
+gp         :           3
+rs1Addr    :   0
+rs2Addr    :   4
+wbAddr     :   3
+op1Data    : 0x00000000
+op2Data    : 0x00000004
 wbData     : 0x00000004
 dmem.addr  :           4
 dmem.wEn   :  0
 dmem.wData : 0x00000000
 -----------------
-pcReg      : 0x00000350
-inst       : 0x0011e193
+pcReg      : 0x000001dc
+inst       : 0x16761463
+exeFun     :  12
 gp         :           4
-rs1Addr    :   3
-rs2Addr    :   1
-wbAddr     :   3
-rs1Data    : 0x00000004
-rs2Data    : 0x00000000
-wbData     : 0x00000005
-dmem.addr  :           5
+rs1Addr    :  12
+rs2Addr    :   7
+wbAddr     :   8
+op1Data    : 0x00000002
+op2Data    : 0x00000002
+wbData     : 0x00000000
+dmem.addr  :           0
+dmem.wEn   :  0
+dmem.wData : 0x00000002
+-----------------
+pcReg      : 0x000001e0
+inst       : 0x340156f3
+exeFun     :  18
+gp         :           4
+rs1Addr    :   2
+rs2Addr    :   0
+wbAddr     :  13
+op1Data    : 0x00000002
+op2Data    : 0x00000000
+wbData     : 0x00000006
+dmem.addr  :           2
 dmem.wEn   :  0
 dmem.wData : 0x00000000
 -----------------
-pcReg      : 0x00000354
-inst       : 0x05d00893
+pcReg      : 0x000001e4
+inst       : 0x00600393
+exeFun     :   1
+gp         :           4
+rs1Addr    :   0
+rs2Addr    :   6
+wbAddr     :   7
+op1Data    : 0x00000000
+op2Data    : 0x00000006
+wbData     : 0x00000006
+dmem.addr  :           6
+dmem.wEn   :  0
+dmem.wData : 0x00000000
+-----------------
+pcReg      : 0x000001e8
+inst       : 0x00500193
+exeFun     :   1
+gp         :           4
+rs1Addr    :   0
+rs2Addr    :   5
+wbAddr     :   3
+op1Data    : 0x00000000
+op2Data    : 0x00000005
+wbData     : 0x00000005
+dmem.addr  :           5
+dmem.wEn   :  0
+dmem.wData : 0x00000184
+-----------------
+pcReg      : 0x000001ec
+inst       : 0x14769c63
+exeFun     :  12
 gp         :           5
+rs1Addr    :  13
+rs2Addr    :   7
+wbAddr     :  24
+op1Data    : 0x00000006
+op2Data    : 0x00000006
+wbData     : 0x00000000
+dmem.addr  :           0
+dmem.wEn   :  0
+dmem.wData : 0x00000006
+-----------------
+pcReg      : 0x000001f0
+inst       : 0x0bad2537
+exeFun     :   1
+gp         :           5
+rs1Addr    :  26
+rs2Addr    :  26
+wbAddr     :  10
+op1Data    : 0x00000000
+op2Data    : 0x0bad2000
+wbData     : 0x0bad2000
+dmem.addr  :   195895296
+dmem.wEn   :  0
+dmem.wData : 0x00000000
+-----------------
+pcReg      : 0x000001f4
+inst       : 0xdea50513
+exeFun     :   1
+gp         :           5
+rs1Addr    :  10
+rs2Addr    :  10
+wbAddr     :  10
+op1Data    : 0x0bad2000
+op2Data    : 0xfffffdea
+wbData     : 0x0bad1dea
+dmem.addr  :   195894762
+dmem.wEn   :  0
+dmem.wData : 0x0bad2000
+-----------------
+pcReg      : 0x000001f8
+inst       : 0x340515f3
+exeFun     :  18
+gp         :           5
+rs1Addr    :  10
+rs2Addr    :   0
+wbAddr     :  11
+op1Data    : 0x0bad1dea
+op2Data    : 0x00000000
+wbData     : 0x00000002
+dmem.addr  :   195894762
+dmem.wEn   :  0
+dmem.wData : 0x00000000
+-----------------
+pcReg      : 0x000001fc
+inst       : 0x00200393
+exeFun     :   1
+gp         :           5
+rs1Addr    :   0
+rs2Addr    :   2
+wbAddr     :   7
+op1Data    : 0x00000000
+op2Data    : 0x00000002
+wbData     : 0x00000002
+dmem.addr  :           2
+dmem.wEn   :  0
+dmem.wData : 0x00000000
+-----------------
+pcReg      : 0x00000200
+inst       : 0x00600193
+exeFun     :   1
+gp         :           5
+rs1Addr    :   0
+rs2Addr    :   6
+wbAddr     :   3
+op1Data    : 0x00000000
+op2Data    : 0x00000006
+wbData     : 0x00000006
+dmem.addr  :           6
+dmem.wEn   :  0
+dmem.wData : 0x00000000
+-----------------
+pcReg      : 0x00000204
+inst       : 0x14759063
+exeFun     :  12
+gp         :           6
+rs1Addr    :  11
+rs2Addr    :   7
+wbAddr     :   0
+op1Data    : 0x00000002
+op2Data    : 0x00000002
+wbData     : 0x00000000
+dmem.addr  :           0
+dmem.wEn   :  0
+dmem.wData : 0x00000002
+-----------------
+pcReg      : 0x00000208
+inst       : 0x00002537
+exeFun     :   1
+gp         :           6
+rs1Addr    :   0
+rs2Addr    :   0
+wbAddr     :  10
+op1Data    : 0x00000000
+op2Data    : 0x00002000
+wbData     : 0x00002000
+dmem.addr  :        8192
+dmem.wEn   :  0
+dmem.wData : 0x00000000
+-----------------
+pcReg      : 0x0000020c
+inst       : 0xdea50513
+exeFun     :   1
+gp         :           6
+rs1Addr    :  10
+rs2Addr    :  10
+wbAddr     :  10
+op1Data    : 0x00002000
+op2Data    : 0xfffffdea
+wbData     : 0x00001dea
+dmem.addr  :        7658
+dmem.wEn   :  0
+dmem.wData : 0x00002000
+-----------------
+pcReg      : 0x00000210
+inst       : 0x340535f3
+exeFun     :  18
+gp         :           6
+rs1Addr    :  10
+rs2Addr    :   0
+wbAddr     :  11
+op1Data    : 0x00001dea
+op2Data    : 0x00000000
+wbData     : 0x0bad1dea
+dmem.addr  :        7658
+dmem.wEn   :  0
+dmem.wData : 0x00000000
+-----------------
+pcReg      : 0x00000214
+inst       : 0x0bad23b7
+exeFun     :   1
+gp         :           6
+rs1Addr    :  26
+rs2Addr    :  26
+wbAddr     :   7
+op1Data    : 0x00000000
+op2Data    : 0x0bad2000
+wbData     : 0x0bad2000
+dmem.addr  :   195895296
+dmem.wEn   :  0
+dmem.wData : 0x00000000
+-----------------
+pcReg      : 0x00000218
+inst       : 0xdea38393
+exeFun     :   1
+gp         :           6
+rs1Addr    :   7
+rs2Addr    :  10
+wbAddr     :   7
+op1Data    : 0x0bad2000
+op2Data    : 0xfffffdea
+wbData     : 0x0bad1dea
+dmem.addr  :   195894762
+dmem.wEn   :  0
+dmem.wData : 0x00001dea
+-----------------
+pcReg      : 0x0000021c
+inst       : 0x00700193
+exeFun     :   1
+gp         :           6
+rs1Addr    :   0
+rs2Addr    :   7
+wbAddr     :   3
+op1Data    : 0x00000000
+op2Data    : 0x00000007
+wbData     : 0x00000007
+dmem.addr  :           7
+dmem.wEn   :  0
+dmem.wData : 0x0bad1dea
+-----------------
+pcReg      : 0x00000220
+inst       : 0x12759263
+exeFun     :  12
+gp         :           7
+rs1Addr    :  11
+rs2Addr    :   7
+wbAddr     :   4
+op1Data    : 0x0bad1dea
+op2Data    : 0x0bad1dea
+wbData     : 0x00000000
+dmem.addr  :           0
+dmem.wEn   :  0
+dmem.wData : 0x0bad1dea
+-----------------
+pcReg      : 0x00000224
+inst       : 0x0000c537
+exeFun     :   1
+gp         :           7
+rs1Addr    :   1
+rs2Addr    :   0
+wbAddr     :  10
+op1Data    : 0x00000000
+op2Data    : 0x0000c000
+wbData     : 0x0000c000
+dmem.addr  :       49152
+dmem.wEn   :  0
+dmem.wData : 0x00000000
+-----------------
+pcReg      : 0x00000228
+inst       : 0xeef50513
+exeFun     :   1
+gp         :           7
+rs1Addr    :  10
+rs2Addr    :  15
+wbAddr     :  10
+op1Data    : 0x0000c000
+op2Data    : 0xfffffeef
+wbData     : 0x0000beef
+dmem.addr  :       48879
+dmem.wEn   :  0
+dmem.wData : 0x00000000
+-----------------
+pcReg      : 0x0000022c
+inst       : 0x340525f3
+exeFun     :  18
+gp         :           7
+rs1Addr    :  10
+rs2Addr    :   0
+wbAddr     :  11
+op1Data    : 0x0000beef
+op2Data    : 0x00000000
+wbData     : 0x0bad0000
+dmem.addr  :       48879
+dmem.wEn   :  0
+dmem.wData : 0x00000000
+-----------------
+pcReg      : 0x00000230
+inst       : 0x0bad03b7
+exeFun     :   1
+gp         :           7
+rs1Addr    :  26
+rs2Addr    :  26
+wbAddr     :   7
+op1Data    : 0x00000000
+op2Data    : 0x0bad0000
+wbData     : 0x0bad0000
+dmem.addr  :   195887104
+dmem.wEn   :  0
+dmem.wData : 0x00000000
+-----------------
+pcReg      : 0x00000234
+inst       : 0x00800193
+exeFun     :   1
+gp         :           7
+rs1Addr    :   0
+rs2Addr    :   8
+wbAddr     :   3
+op1Data    : 0x00000000
+op2Data    : 0x00000008
+wbData     : 0x00000008
+dmem.addr  :           8
+dmem.wEn   :  0
+dmem.wData : 0x00000000
+-----------------
+pcReg      : 0x00000238
+inst       : 0x10759663
+exeFun     :  12
+gp         :           8
+rs1Addr    :  11
+rs2Addr    :   7
+wbAddr     :  12
+op1Data    : 0x0bad0000
+op2Data    : 0x0bad0000
+wbData     : 0x00000000
+dmem.addr  :           0
+dmem.wEn   :  0
+dmem.wData : 0x0bad0000
+-----------------
+pcReg      : 0x0000023c
+inst       : 0x0bad2537
+exeFun     :   1
+gp         :           8
+rs1Addr    :  26
+rs2Addr    :  26
+wbAddr     :  10
+op1Data    : 0x00000000
+op2Data    : 0x0bad2000
+wbData     : 0x0bad2000
+dmem.addr  :   195895296
+dmem.wEn   :  0
+dmem.wData : 0x00000000
+-----------------
+pcReg      : 0x00000240
+inst       : 0xdea50513
+exeFun     :   1
+gp         :           8
+rs1Addr    :  10
+rs2Addr    :  10
+wbAddr     :  10
+op1Data    : 0x0bad2000
+op2Data    : 0xfffffdea
+wbData     : 0x0bad1dea
+dmem.addr  :   195894762
+dmem.wEn   :  0
+dmem.wData : 0x0bad2000
+-----------------
+pcReg      : 0x00000244
+inst       : 0x34051573
+exeFun     :  18
+gp         :           8
+rs1Addr    :  10
+rs2Addr    :   0
+wbAddr     :  10
+op1Data    : 0x0bad1dea
+op2Data    : 0x00000000
+wbData     : 0x0badbeef
+dmem.addr  :   195894762
+dmem.wEn   :  0
+dmem.wData : 0x00000000
+-----------------
+pcReg      : 0x00000248
+inst       : 0x0badc3b7
+exeFun     :   1
+gp         :           8
+rs1Addr    :  27
+rs2Addr    :  26
+wbAddr     :   7
+op1Data    : 0x00000000
+op2Data    : 0x0badc000
+wbData     : 0x0badc000
+dmem.addr  :   195936256
+dmem.wEn   :  0
+dmem.wData : 0x00000000
+-----------------
+pcReg      : 0x0000024c
+inst       : 0xeef38393
+exeFun     :   1
+gp         :           8
+rs1Addr    :   7
+rs2Addr    :  15
+wbAddr     :   7
+op1Data    : 0x0badc000
+op2Data    : 0xfffffeef
+wbData     : 0x0badbeef
+dmem.addr  :   195935983
+dmem.wEn   :  0
+dmem.wData : 0x00000000
+-----------------
+pcReg      : 0x00000250
+inst       : 0x00900193
+exeFun     :   1
+gp         :           8
+rs1Addr    :   0
+rs2Addr    :   9
+wbAddr     :   3
+op1Data    : 0x00000000
+op2Data    : 0x00000009
+wbData     : 0x00000009
+dmem.addr  :           9
+dmem.wEn   :  0
+dmem.wData : 0x00000000
+-----------------
+pcReg      : 0x00000254
+inst       : 0x0e751863
+exeFun     :  12
+gp         :           9
+rs1Addr    :  10
+rs2Addr    :   7
+wbAddr     :  16
+op1Data    : 0x0badbeef
+op2Data    : 0x0badbeef
+wbData     : 0x00000000
+dmem.addr  :           0
+dmem.wEn   :  0
+dmem.wData : 0x0badbeef
+-----------------
+pcReg      : 0x00000258
+inst       : 0x00002537
+exeFun     :   1
+gp         :           9
+rs1Addr    :   0
+rs2Addr    :   0
+wbAddr     :  10
+op1Data    : 0x00000000
+op2Data    : 0x00002000
+wbData     : 0x00002000
+dmem.addr  :        8192
+dmem.wEn   :  0
+dmem.wData : 0x00000000
+-----------------
+pcReg      : 0x0000025c
+inst       : 0xdea50513
+exeFun     :   1
+gp         :           9
+rs1Addr    :  10
+rs2Addr    :  10
+wbAddr     :  10
+op1Data    : 0x00002000
+op2Data    : 0xfffffdea
+wbData     : 0x00001dea
+dmem.addr  :        7658
+dmem.wEn   :  0
+dmem.wData : 0x00002000
+-----------------
+pcReg      : 0x00000260
+inst       : 0x34053573
+exeFun     :  18
+gp         :           9
+rs1Addr    :  10
+rs2Addr    :   0
+wbAddr     :  10
+op1Data    : 0x00001dea
+op2Data    : 0x00000000
+wbData     : 0x0bad1dea
+dmem.addr  :        7658
+dmem.wEn   :  0
+dmem.wData : 0x00000000
+-----------------
+pcReg      : 0x00000264
+inst       : 0x0bad23b7
+exeFun     :   1
+gp         :           9
+rs1Addr    :  26
+rs2Addr    :  26
+wbAddr     :   7
+op1Data    : 0x00000000
+op2Data    : 0x0bad2000
+wbData     : 0x0bad2000
+dmem.addr  :   195895296
+dmem.wEn   :  0
+dmem.wData : 0x00000000
+-----------------
+pcReg      : 0x00000268
+inst       : 0xdea38393
+exeFun     :   1
+gp         :           9
+rs1Addr    :   7
+rs2Addr    :  10
+wbAddr     :   7
+op1Data    : 0x0bad2000
+op2Data    : 0xfffffdea
+wbData     : 0x0bad1dea
+dmem.addr  :   195894762
+dmem.wEn   :  0
+dmem.wData : 0x0bad1dea
+-----------------
+pcReg      : 0x0000026c
+inst       : 0x00a00193
+exeFun     :   1
+gp         :           9
+rs1Addr    :   0
+rs2Addr    :  10
+wbAddr     :   3
+op1Data    : 0x00000000
+op2Data    : 0x0000000a
+wbData     : 0x0000000a
+dmem.addr  :          10
+dmem.wEn   :  0
+dmem.wData : 0x0bad1dea
+-----------------
+pcReg      : 0x00000270
+inst       : 0x0c751a63
+exeFun     :  12
+gp         :          10
+rs1Addr    :  10
+rs2Addr    :   7
+wbAddr     :  20
+op1Data    : 0x0bad1dea
+op2Data    : 0x0bad1dea
+wbData     : 0x00000000
+dmem.addr  :           0
+dmem.wEn   :  0
+dmem.wData : 0x0bad1dea
+-----------------
+pcReg      : 0x00000274
+inst       : 0x0000c537
+exeFun     :   1
+gp         :          10
+rs1Addr    :   1
+rs2Addr    :   0
+wbAddr     :  10
+op1Data    : 0x00000000
+op2Data    : 0x0000c000
+wbData     : 0x0000c000
+dmem.addr  :       49152
+dmem.wEn   :  0
+dmem.wData : 0x00000000
+-----------------
+pcReg      : 0x00000278
+inst       : 0xeef50513
+exeFun     :   1
+gp         :          10
+rs1Addr    :  10
+rs2Addr    :  15
+wbAddr     :  10
+op1Data    : 0x0000c000
+op2Data    : 0xfffffeef
+wbData     : 0x0000beef
+dmem.addr  :       48879
+dmem.wEn   :  0
+dmem.wData : 0x00000000
+-----------------
+pcReg      : 0x0000027c
+inst       : 0x34052573
+exeFun     :  18
+gp         :          10
+rs1Addr    :  10
+rs2Addr    :   0
+wbAddr     :  10
+op1Data    : 0x0000beef
+op2Data    : 0x00000000
+wbData     : 0x0bad0000
+dmem.addr  :       48879
+dmem.wEn   :  0
+dmem.wData : 0x00000000
+-----------------
+pcReg      : 0x00000280
+inst       : 0x0bad03b7
+exeFun     :   1
+gp         :          10
+rs1Addr    :  26
+rs2Addr    :  26
+wbAddr     :   7
+op1Data    : 0x00000000
+op2Data    : 0x0bad0000
+wbData     : 0x0bad0000
+dmem.addr  :   195887104
+dmem.wEn   :  0
+dmem.wData : 0x00000000
+-----------------
+pcReg      : 0x00000284
+inst       : 0x00b00193
+exeFun     :   1
+gp         :          10
+rs1Addr    :   0
+rs2Addr    :  11
+wbAddr     :   3
+op1Data    : 0x00000000
+op2Data    : 0x0000000b
+wbData     : 0x0000000b
+dmem.addr  :          11
+dmem.wEn   :  0
+dmem.wData : 0x0bad0000
+-----------------
+pcReg      : 0x00000288
+inst       : 0x0a751e63
+exeFun     :  12
+gp         :          11
+rs1Addr    :  10
+rs2Addr    :   7
+wbAddr     :  28
+op1Data    : 0x0bad0000
+op2Data    : 0x0bad0000
+wbData     : 0x00000000
+dmem.addr  :           0
+dmem.wEn   :  0
+dmem.wData : 0x0bad0000
+-----------------
+pcReg      : 0x0000028c
+inst       : 0x34002573
+exeFun     :  18
+gp         :          11
+rs1Addr    :   0
+rs2Addr    :   0
+wbAddr     :  10
+op1Data    : 0x00000000
+op2Data    : 0x00000000
+wbData     : 0x0badbeef
+dmem.addr  :           0
+dmem.wEn   :  0
+dmem.wData : 0x00000000
+-----------------
+pcReg      : 0x00000290
+inst       : 0x0badc3b7
+exeFun     :   1
+gp         :          11
+rs1Addr    :  27
+rs2Addr    :  26
+wbAddr     :   7
+op1Data    : 0x00000000
+op2Data    : 0x0badc000
+wbData     : 0x0badc000
+dmem.addr  :   195936256
+dmem.wEn   :  0
+dmem.wData : 0x00000000
+-----------------
+pcReg      : 0x00000294
+inst       : 0xeef38393
+exeFun     :   1
+gp         :          11
+rs1Addr    :   7
+rs2Addr    :  15
+wbAddr     :   7
+op1Data    : 0x0badc000
+op2Data    : 0xfffffeef
+wbData     : 0x0badbeef
+dmem.addr  :   195935983
+dmem.wEn   :  0
+dmem.wData : 0x00000000
+-----------------
+pcReg      : 0x00000298
+inst       : 0x00c00193
+exeFun     :   1
+gp         :          11
+rs1Addr    :   0
+rs2Addr    :  12
+wbAddr     :   3
+op1Data    : 0x00000000
+op2Data    : 0x0000000c
+wbData     : 0x0000000c
+dmem.addr  :          12
+dmem.wEn   :  0
+dmem.wData : 0x00000002
+-----------------
+pcReg      : 0x0000029c
+inst       : 0x0a751463
+exeFun     :  12
+gp         :          12
+rs1Addr    :  10
+rs2Addr    :   7
+wbAddr     :   8
+op1Data    : 0x0badbeef
+op2Data    : 0x0badbeef
+wbData     : 0x00000000
+dmem.addr  :           0
+dmem.wEn   :  0
+dmem.wData : 0x0badbeef
+-----------------
+pcReg      : 0x000002a0
+inst       : 0x30102573
+exeFun     :  18
+gp         :          12
+rs1Addr    :   0
+rs2Addr    :   1
+wbAddr     :  10
+op1Data    : 0x00000000
+op2Data    : 0x00000000
+wbData     : 0x00000000
+dmem.addr  :           0
+dmem.wEn   :  0
+dmem.wData : 0x00000000
+-----------------
+pcReg      : 0x000002a4
+inst       : 0x02057513
+exeFun     :   3
+gp         :          12
+rs1Addr    :  10
+rs2Addr    :   0
+wbAddr     :  10
+op1Data    : 0x00000000
+op2Data    : 0x00000020
+wbData     : 0x00000000
+dmem.addr  :           0
+dmem.wEn   :  0
+dmem.wData : 0x00000000
+-----------------
+pcReg      : 0x000002a8
+inst       : 0x02050863
+exeFun     :  11
+gp         :          12
+rs1Addr    :  10
+rs2Addr    :   0
+wbAddr     :  16
+op1Data    : 0x00000000
+op2Data    : 0x00000000
+wbData     : 0x00000000
+dmem.addr  :           0
+dmem.wEn   :  0
+dmem.wData : 0x00000000
+-----------------
+pcReg      : 0x000002d8
+inst       : 0x30102573
+exeFun     :  18
+gp         :          12
+rs1Addr    :   0
+rs2Addr    :   1
+wbAddr     :  10
+op1Data    : 0x00000000
+op2Data    : 0x00000000
+wbData     : 0x00000000
+dmem.addr  :           0
+dmem.wEn   :  0
+dmem.wData : 0x00000000
+-----------------
+pcReg      : 0x000002dc
+inst       : 0x01455513
+exeFun     :   7
+gp         :          12
+rs1Addr    :  10
+rs2Addr    :  20
+wbAddr     :  10
+op1Data    : 0x00000000
+op2Data    : 0x00000014
+wbData     : 0x00000000
+dmem.addr  :           0
+dmem.wEn   :  0
+dmem.wData : 0x00000000
+-----------------
+pcReg      : 0x000002e0
+inst       : 0x00157513
+exeFun     :   3
+gp         :          12
+rs1Addr    :  10
+rs2Addr    :   1
+wbAddr     :  10
+op1Data    : 0x00000000
+op2Data    : 0x00000001
+wbData     : 0x00000000
+dmem.addr  :           0
+dmem.wEn   :  0
+dmem.wData : 0x00000000
+-----------------
+pcReg      : 0x000002e4
+inst       : 0x04050463
+exeFun     :  11
+gp         :          12
+rs1Addr    :  10
+rs2Addr    :   0
+wbAddr     :   8
+op1Data    : 0x00000000
+op2Data    : 0x00000000
+wbData     : 0x00000000
+dmem.addr  :           0
+dmem.wEn   :  0
+dmem.wData : 0x00000000
+-----------------
+pcReg      : 0x0000032c
+inst       : 0x0ff0000f
+exeFun     :   0
+gp         :          12
+rs1Addr    :   0
+rs2Addr    :  31
+wbAddr     :   0
+op1Data    : 0x00000000
+op2Data    : 0x00000000
+wbData     : 0x00000000
+dmem.addr  :           0
+dmem.wEn   :  0
+dmem.wData : 0x00000000
+-----------------
+pcReg      : 0x00000330
+inst       : 0x00100193
+exeFun     :   1
+gp         :          12
+rs1Addr    :   0
+rs2Addr    :   1
+wbAddr     :   3
+op1Data    : 0x00000000
+op2Data    : 0x00000001
+wbData     : 0x00000001
+dmem.addr  :           1
+dmem.wEn   :  0
+dmem.wData : 0x00000000
+-----------------
+pcReg      : 0x00000334
+inst       : 0x05d00893
+exeFun     :   1
+gp         :           1
 rs1Addr    :   0
 rs2Addr    :  29
 wbAddr     :  17
-rs1Data    : 0x00000000
-rs2Data    : 0x00000000
+op1Data    : 0x00000000
+op2Data    : 0x0000005d
 wbData     : 0x0000005d
 dmem.addr  :          93
 dmem.wEn   :  0
 dmem.wData : 0x00000000
 -----------------
-pcReg      : 0x00000358
-inst       : 0x00018513
-gp         :           5
-rs1Addr    :   3
+pcReg      : 0x00000338
+inst       : 0x00000513
+exeFun     :   1
+gp         :           1
+rs1Addr    :   0
 rs2Addr    :   0
 wbAddr     :  10
-rs1Data    : 0x00000005
-rs2Data    : 0x00000000
-wbData     : 0x00000005
-dmem.addr  :           5
+op1Data    : 0x00000000
+op2Data    : 0x00000000
+wbData     : 0x00000000
+dmem.addr  :           0
 dmem.wEn   :  0
 dmem.wData : 0x00000000
 -----------------
-pcReg      : 0x0000035c
+pcReg      : 0x0000033c
 inst       : 0x00000073
-gp         :           5
+exeFun     :   0
+gp         :           1
 rs1Addr    :   0
 rs2Addr    :   0
 wbAddr     :   0
-rs1Data    : 0x00000000
-rs2Data    : 0x00000000
+op1Data    : 0x00000000
+op2Data    : 0x00000000
 wbData     : 0x00000000
 dmem.addr  :           0
 dmem.wEn   :  0
@@ -1196,12 +2142,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x00000004
 inst       : 0x34202f73
-gp         :           5
+exeFun     :  18
+gp         :           1
 rs1Addr    :   0
 rs2Addr    :   2
 wbAddr     :  30
-rs1Data    : 0x00000000
-rs2Data    : 0x00000000
+op1Data    : 0x00000000
+op2Data    : 0x00000000
 wbData     : 0x0000000b
 dmem.addr  :           0
 dmem.wEn   :  0
@@ -1209,12 +2156,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x00000008
 inst       : 0x00800f93
-gp         :           5
+exeFun     :   1
+gp         :           1
 rs1Addr    :   0
 rs2Addr    :   8
 wbAddr     :  31
-rs1Data    : 0x00000000
-rs2Data    : 0x00000000
+op1Data    : 0x00000000
+op2Data    : 0x00000008
 wbData     : 0x00000008
 dmem.addr  :           8
 dmem.wEn   :  0
@@ -1222,12 +2170,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x0000000c
 inst       : 0x03ff0a63
-gp         :           5
+exeFun     :  11
+gp         :           1
 rs1Addr    :  30
 rs2Addr    :  31
 wbAddr     :  20
-rs1Data    : 0x0000000b
-rs2Data    : 0x00000008
+op1Data    : 0x0000000b
+op2Data    : 0x00000008
 wbData     : 0x00000000
 dmem.addr  :           0
 dmem.wEn   :  0
@@ -1235,12 +2184,13 @@ dmem.wData : 0x00000008
 -----------------
 pcReg      : 0x00000010
 inst       : 0x00900f93
-gp         :           5
+exeFun     :   1
+gp         :           1
 rs1Addr    :   0
 rs2Addr    :   9
 wbAddr     :  31
-rs1Data    : 0x00000000
-rs2Data    : 0x00000000
+op1Data    : 0x00000000
+op2Data    : 0x00000009
 wbData     : 0x00000009
 dmem.addr  :           9
 dmem.wEn   :  0
@@ -1248,12 +2198,13 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x00000014
 inst       : 0x03ff0663
-gp         :           5
+exeFun     :  11
+gp         :           1
 rs1Addr    :  30
 rs2Addr    :  31
 wbAddr     :  12
-rs1Data    : 0x0000000b
-rs2Data    : 0x00000009
+op1Data    : 0x0000000b
+op2Data    : 0x00000009
 wbData     : 0x00000000
 dmem.addr  :           0
 dmem.wEn   :  0
@@ -1261,25 +2212,27 @@ dmem.wData : 0x00000009
 -----------------
 pcReg      : 0x00000018
 inst       : 0x00b00f93
-gp         :           5
+exeFun     :   1
+gp         :           1
 rs1Addr    :   0
 rs2Addr    :  11
 wbAddr     :  31
-rs1Data    : 0x00000000
-rs2Data    : 0x00000000
+op1Data    : 0x00000000
+op2Data    : 0x0000000b
 wbData     : 0x0000000b
 dmem.addr  :          11
 dmem.wEn   :  0
-dmem.wData : 0x00000000
+dmem.wData : 0x0bad0000
 -----------------
 pcReg      : 0x0000001c
 inst       : 0x03ff0263
-gp         :           5
+exeFun     :  11
+gp         :           1
 rs1Addr    :  30
 rs2Addr    :  31
 wbAddr     :   4
-rs1Data    : 0x0000000b
-rs2Data    : 0x0000000b
+op1Data    : 0x0000000b
+op2Data    : 0x0000000b
 wbData     : 0x00000000
 dmem.addr  :           0
 dmem.wEn   :  0
@@ -1287,12 +2240,13 @@ dmem.wData : 0x0000000b
 -----------------
 pcReg      : 0x00000040
 inst       : 0x00001f17
-gp         :           5
+exeFun     :   1
+gp         :           1
 rs1Addr    :   0
 rs2Addr    :   0
 wbAddr     :  30
-rs1Data    : 0x00000000
-rs2Data    : 0x00000000
+op1Data    : 0x00000040
+op2Data    : 0x00001000
 wbData     : 0x00001040
 dmem.addr  :        4160
 dmem.wEn   :  0
@@ -1300,14 +2254,15 @@ dmem.wData : 0x00000000
 -----------------
 pcReg      : 0x00000044
 inst       : 0xfc3f2023
-gp         :           5
+exeFun     :   1
+gp         :           1
 rs1Addr    :  30
 rs2Addr    :   3
 wbAddr     :   0
-rs1Data    : 0x00001040
-rs2Data    : 0x00000005
+op1Data    : 0x00001040
+op2Data    : 0xffffffc0
 wbData     : 0x00001000
 dmem.addr  :        4096
 dmem.wEn   :  1
-dmem.wData : 0x00000005
+dmem.wData : 0x00000001
 -----------------
