@@ -10,7 +10,8 @@ import java.io.{File, PrintStream}
 class RiscvTest extends AnyFlatSpec with ChiselScalatestTester {
     behavior of "cpu"
         Files.newDirectoryStream(Paths.get("src/test/resources/riscv"), filter => {
-            filter.toString.endsWith(".hex") && filter.toString.contains("rv32ui-p")
+            (filter.toString.endsWith(".hex") && filter.toString.contains("rv32ui-p")) ||
+            (filter.toString == "src/test/resources/riscv/rv32mi-p-csr.hex" || filter.toString == "src/test/resources/riscv/rv32mi-p-scall.hex")
         }).forEach { f =>
             val testName = f.getFileName.toString.stripSuffix(".hex")
             it should s"work through $testName" in {
