@@ -280,3 +280,9 @@ TYPE is made up of one or more of these specifications:
   u[SIZE]    unsigned decimal, SIZE bytes per integer
   x[SIZE]    hexadecimal, SIZE bytes per integer
 ```
+
+### Run
+
+There should be 7 instructions failed in the test.
+
+SH, LHU, FENCE_I, LB, SB, LH, LBU.
