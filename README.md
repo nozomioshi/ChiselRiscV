@@ -36,6 +36,7 @@ where `container_name/id` can be found by running `docker ps -a`.
 - [lw](doc/lw.md)
 - [sw](doc/sw.md)
 - [riscvtests](doc/riscvtests.md)
+- [ctest](doc/ctest.md)
 
 ## Related Efforts
 
