@@ -249,9 +249,13 @@ Comment out the following code in `./target/share/riscv-tests/isa/.gitignore`.
 rv*-*
 ```
 
-### Compile
+### Transform
 
-Convert the elf file to bin file.
+ELF files have floating information which is needed to be reconfigured.
+The memory address is decided while excuting the files.
+There is no kernel in this CPU, so they need to be transformed to the original binary files.
+
+Convert the ELF file to BIN file.
 
 ```bash
 mkdir /src/src/test/resources/riscv
@@ -259,7 +263,7 @@ cd /src/src/test/resources/riscv
 riscv64-unknown-elf-objcopy -O binary /src/target/share/riscv-tests/isa/rv32ui-p-add rv32ui-p-add.bin
 ```
 
-Convert the bin file to hex file.
+Convert the BIN file to HEX file.
 
 ```bash
 od -An -tx1 -w1 -v rv32ui-p-add.bin >> rv32ui-p-add.hex
