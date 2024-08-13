@@ -82,15 +82,19 @@ memRegAluOut  := exeAluOut
 ## Write Back
 
 ```scala
-val wbRegPc     = RegInit(0.U(WordLen.W))
-val wbRegWbAddr = RegInit(0.U(WordLen.W))
-val wbRegRfWen  = RegInit(0.U(WordLen.W))
-val wbRegWbSel  = RegInit(0.U(WordLen.W))
-val wbRegAluOut = RegInit(0.U(WordLen.W))
+val wbRegPc       = RegInit(0.U(WordLen.W))
+val wbRegWbAddr   = RegInit(0.U(WordLen.W))
+val wbRegRfWen    = RegInit(0.U(WordLen.W))
+val wbRegWbSel    = RegInit(0.U(WordLen.W))
+val wbRegAluOut   = RegInit(0.U(WordLen.W))
+val wbRegdmemData = RegInit(0.U(WordLen.W))
+val wbRegCsrRdata = RegInit(0.U(WordLen.W))
 
-wbRegPc     := memRegPc
-wbRegWbAddr := memRegWbAddr
-wbRegRfWen  := memRegRfWen
-wbRegWbSel  := memRegWbSel
-wbRegAluOut := memRegAluOut
+wbRegPc       := memRegPc
+wbRegWbAddr   := memRegWbAddr
+wbRegRfWen    := memRegRfWen
+wbRegWbSel    := memRegWbSel
+wbRegAluOut   := memRegAluOut
+wbRegdmemData := dmem.data
+wbRegCsrRdata := csrRdata
 ```

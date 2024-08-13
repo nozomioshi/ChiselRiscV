@@ -43,11 +43,13 @@ class Core extends Module {
     val memRegOp1Data = RegInit(0.U(WordLen.W))
     val memRegAluOut  = RegInit(0.U(WordLen.W))
 
-    val wbRegPc     = RegInit(0.U(WordLen.W))
-    val wbRegWbAddr = RegInit(0.U(WordLen.W))
-    val wbRegRfWen  = RegInit(0.U(WordLen.W))
-    val wbRegWbSel  = RegInit(0.U(WordLen.W))
-    val wbRegAluOut = RegInit(0.U(WordLen.W))
+    val wbRegPc       = RegInit(0.U(WordLen.W))
+    val wbRegWbAddr   = RegInit(0.U(WordLen.W))
+    val wbRegRfWen    = RegInit(0.U(WordLen.W))
+    val wbRegWbSel    = RegInit(0.U(WordLen.W))
+    val wbRegAluOut   = RegInit(0.U(WordLen.W))
+    val wbRegdmemData = RegInit(0.U(WordLen.W))
+    val wbRegCsrRdata = RegInit(0.U(WordLen.W))
     
     // Fetch
     val ifRegPc = RegInit(StartAddr)
@@ -180,12 +182,12 @@ class Core extends Module {
     ))
 
     exeBrFlag := MuxCase(false.B, Seq(
-        (exeFun === BrBeq)  -> (exeRegOp1Data === exeRegOp2Data),
-        (exeFun === BrBne)  -> (exeRegOp1Data =/= exeRegOp2Data),
-        (exeFun === BrBlt)  -> (exeRegOp1Data.asSInt < exeRegOp2Data.asSInt),
-        (exeFun === BrBge)  -> !(exeRegOp1Data.asSInt < exeRegOp2Data.asSInt),
-        (exeFun === BrBltu) -> (exeRegOp1Data < exeRegOp2Data),
-        (exeFun === BrBgeu) -> !(exeRegOp1Data < exeRegOp2Data)
+        (exeRegExeFun === BrBeq)  -> (exeRegOp1Data === exeRegOp2Data),
+        (exeRegExeFun === BrBne)  -> (exeRegOp1Data =/= exeRegOp2Data),
+        (exeRegExeFun === BrBlt)  -> (exeRegOp1Data.asSInt < exeRegOp2Data.asSInt),
+        (exeRegExeFun === BrBge)  -> !(exeRegOp1Data.asSInt < exeRegOp2Data.asSInt),
+        (exeRegExeFun === BrBltu) -> (exeRegOp1Data < exeRegOp2Data),
+        (exeRegExeFun === BrBgeu) -> !(exeRegOp1Data < exeRegOp2Data)
     ))
 
     exeBrTarget := exeRegPc + exeRegimmBsext
@@ -220,16 +222,18 @@ class Core extends Module {
     }
 
     // Write back
-    wbRegPc     := memRegPc
-    wbRegWbAddr := memRegWbAddr
-    wbRegRfWen  := memRegRfWen
-    wbRegWbSel  := memRegWbSel
-    wbRegAluOut := memRegAluOut
+    wbRegPc       := memRegPc
+    wbRegWbAddr   := memRegWbAddr
+    wbRegRfWen    := memRegRfWen
+    wbRegWbSel    := memRegWbSel
+    wbRegAluOut   := memRegAluOut
+    wbRegdmemData := dmem.data
+    wbRegCsrRdata := csrRdata
 
     val wbData = MuxCase(wbRegAluOut, Seq(
-        (wbRegWbSel === WbMem) -> dmem.data,
+        (wbRegWbSel === WbMem) -> wbRegdmemData,
         (wbRegWbSel === WbPc)  -> (wbRegPc+4.U),
-        (wbRegWbSel === WbCsr) -> csrRdata
+        (wbRegWbSel === WbCsr) -> wbRegCsrRdata
     ))
     when(wbRegRfWen === RenS) {
         regFile(wbRegWbAddr) := wbData
