@@ -43,13 +43,9 @@ class Core extends Module {
     val memRegOp1Data = RegInit(0.U(WordLen.W))
     val memRegAluOut  = RegInit(0.U(WordLen.W))
 
-    val wbRegPc       = RegInit(0.U(WordLen.W))
     val wbRegWbAddr   = RegInit(0.U(WordLen.W))
     val wbRegRfWen    = RegInit(0.U(WordLen.W))
-    val wbRegWbSel    = RegInit(0.U(WordLen.W))
-    val wbRegAluOut   = RegInit(0.U(WordLen.W))
-    val wbRegdmemData = RegInit(0.U(WordLen.W))
-    val wbRegCsrRdata = RegInit(0.U(WordLen.W))
+    val wbRegWbData   = RegInit(0.U(WordLen.W))
     
     // Fetch
     val ifRegPc = RegInit(StartAddr)
@@ -194,7 +190,7 @@ class Core extends Module {
     exeJmpFlag  := exeRegWbSel === WbPc
 
     // Memory access
-    memRegPc      := memRegPc
+    memRegPc      := exeRegPc
     memRegInst    := exeRegInst
     memRegWbAddr  := exeRegWbAddr
     memRegRs2Data := exeRegRs2Data
@@ -221,27 +217,24 @@ class Core extends Module {
         csrRegFile(csrAddr) := csrWdata
     }
 
+    val wbData = MuxCase(memRegAluOut, Seq(
+        (memRegWbSel === WbMem) -> dmem.data,
+        (memRegWbSel === WbPc)  -> (memRegPc+4.U),
+        (memRegWbSel === WbCsr) -> csrRdata
+    ))
+
     // Write back
-    wbRegPc       := memRegPc
     wbRegWbAddr   := memRegWbAddr
     wbRegRfWen    := memRegRfWen
-    wbRegWbSel    := memRegWbSel
-    wbRegAluOut   := memRegAluOut
-    wbRegdmemData := dmem.data
-    wbRegCsrRdata := csrRdata
-
-    val wbData = MuxCase(wbRegAluOut, Seq(
-        (wbRegWbSel === WbMem) -> wbRegdmemData,
-        (wbRegWbSel === WbPc)  -> (wbRegPc+4.U),
-        (wbRegWbSel === WbCsr) -> wbRegCsrRdata
-    ))
+    wbRegWbData   := wbData
+    
     when(wbRegRfWen === RenS) {
-        regFile(wbRegWbAddr) := wbData
+        regFile(wbRegWbAddr) := wbRegWbData
     }
 
     // Debugging
     gp   := regFile(3)
-    exit := (inst === Unimp)
+    exit := (idRegInst === Unimp)
 
     printf(cf"ifRegPc       : 0x${Hexadecimal(ifRegPc)}\n")
     printf(cf"idRegPc       : 0x${Hexadecimal(idRegPc)}\n")

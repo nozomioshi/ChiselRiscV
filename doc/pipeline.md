@@ -98,3 +98,25 @@ wbRegAluOut   := memRegAluOut
 wbRegdmemData := dmem.data
 wbRegCsrRdata := csrRdata
 ```
+
+The `wbData` can be calculated in the Memory Access stage.
+As a result, the number of Write Back stage pipeline registers can be reduced.
+
+```scala
+// Registers
+val wbRegWbAddr   = RegInit(0.U(WordLen.W))
+val wbRegRfWen    = RegInit(0.U(WordLen.W))
+val wbRegWbData   = RegInit(0.U(WordLen.W))
+
+// Execute
+val wbData = MuxCase(wbRegAluOut, Seq(
+    (wbRegWbSel === WbMem) -> dmem.data,
+    (wbRegWbSel === WbPc)  -> (wbRegPc+4.U),
+    (wbRegWbSel === WbCsr) -> csrRdata
+))
+
+// Write back
+wbRegWbAddr   := memRegWbAddr
+wbRegRfWen    := memRegRfWen
+wbRegWbData   := wbData
+```
