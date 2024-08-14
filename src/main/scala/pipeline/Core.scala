@@ -20,9 +20,9 @@ class Core extends Module {
     val idRegInst = RegInit(0.U(WordLen.W))
 
     val exeRegPc       = RegInit(0.U(WordLen.W))
-    val exeRegInst     = RegInit(0.U(WordLen.W))
     val exeRegWbAddr   = RegInit(0.U(WordLen.W))
     val exeRegRs2Data  = RegInit(0.U(WordLen.W))
+    val exeRegCsrAddr  = RegInit(0.U(WordLen.W))
     val exeRegExeFun   = RegInit(0.U(WordLen.W))
     val exeRegMemWen   = RegInit(0.U(WordLen.W))
     val exeRegRfWen    = RegInit(0.U(WordLen.W))
@@ -33,9 +33,9 @@ class Core extends Module {
     val exeRegOp2Data  = RegInit(0.U(WordLen.W))
 
     val memRegPc      = RegInit(0.U(WordLen.W))
-    val memRegInst    = RegInit(0.U(WordLen.W))
     val memRegWbAddr  = RegInit(0.U(WordLen.W))
     val memRegRs2Data = RegInit(0.U(WordLen.W))
+    val memRegCsrAddr = RegInit(0.U(WordLen.W))
     val memRegMemWen  = RegInit(0.U(WordLen.W))
     val memRegRfWen   = RegInit(0.U(WordLen.W))
     val memRegWbSel   = RegInit(0.U(WordLen.W))
@@ -148,11 +148,13 @@ class Core extends Module {
         (op2Sel === Op2Imu) -> immUshifted
     ))
 
+    val csrAddr = Mux(csrCmd === CsrE, 0x342.U, idRegInst(31, 20)) // mcause: 0x342
+
     // Execute
     exeRegPc       := idRegPc
-    exeRegInst     := idRegInst
     exeRegWbAddr   := wbAddr
     exeRegRs2Data  := rs2Data
+    exeRegCsrAddr  := csrAddr
     exeRegimmBsext := immBsext
     exeRegExeFun   := exeFun
     exeRegMemWen   := memWen
@@ -191,9 +193,9 @@ class Core extends Module {
 
     // Memory access
     memRegPc      := exeRegPc
-    memRegInst    := exeRegInst
     memRegWbAddr  := exeRegWbAddr
     memRegRs2Data := exeRegRs2Data
+    memRegCsrAddr := exeRegCsrAddr
     memRegMemWen  := exeRegMemWen
     memRegRfWen   := exeRegRfWen
     memRegWbSel   := exeRegWbSel
@@ -204,9 +206,8 @@ class Core extends Module {
     dmem.addr  := memRegAluOut
     dmem.wEn   := memRegMemWen
     dmem.wData := memRegRs2Data
-
-    val csrAddr = Mux(memRegCsrCmd === CsrE, 0x342.U, memRegInst(31, 20)) // mcause: 0x342
-    val csrRdata = csrRegFile(csrAddr)
+    
+    val csrRdata = csrRegFile(memRegCsrAddr)
     val csrWdata = MuxCase(0.U, Seq(
         (memRegCsrCmd === CsrW) -> memRegOp1Data,
         (memRegCsrCmd === CsrS) -> (csrRdata | memRegOp1Data),

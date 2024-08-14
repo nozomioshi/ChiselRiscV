@@ -99,8 +99,12 @@ wbRegdmemData := dmem.data
 wbRegCsrRdata := csrRdata
 ```
 
+## Perf
+
 The `wbData` can be calculated in the Memory Access stage.
 As a result, the number of Write Back stage pipeline registers can be reduced.
+The Write Back process can be separated from the calculation of data.
+
 
 ```scala
 // Registers
@@ -119,4 +123,26 @@ val wbData = MuxCase(wbRegAluOut, Seq(
 wbRegWbAddr   := memRegWbAddr
 wbRegRfWen    := memRegRfWen
 wbRegWbData   := wbData
+```
+
+The caculation of `csrAddr` can be considered as a decode.
+Thus, it can be moved to the Decode stage.
+
+```scala
+val csrAddr = Mux(csrCmd === CsrE, 0x342.U, idRegInst(31, 20)) // mcause: 0x342
+```
+
+Therefore, `exeRegInst` and `memRegInst` can be removed.
+But `exeRegCsrAddr` and `memRegCsrAddr` are added.
+It is supposed to have a little bit of acceleration.
+
+However, the calculation of `csrWdata` is dependent on the `csrRdata`, so it need to be calculated in the Memory Access stage.
+
+```scala
+val csrWdata = MuxCase(0.U, Seq(
+    (memRegCsrCmd === CsrW) -> memRegOp1Data,
+    (memRegCsrCmd === CsrS) -> (csrRdata | memRegOp1Data),
+    (memRegCsrCmd === CsrC) -> (csrRdata & ~memRegOp1Data),
+    (memRegCsrCmd === CsrE) -> 11.U // Machine ECALL
+))
 ```
