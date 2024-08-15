@@ -198,30 +198,90 @@ val csrAddr = Mux(csrCmd === CsrE, 0x342.U, idInst(31, 20)) // mcause: 0x342
 
 There are two kinds of data hazards.
 
-The first one is that the needed data has not been written back to the register file but already been calculated.
-The other one is that the needed data hasn't been calculated yet.
-The first kind of data hazard can be solved by forwarding.
-The second kind of data hazard can be solved by stalling.
+The first one is that the needed data has not been written back to the register file but already been calculated which can be solved by forwarding.
+The other one is that the needed data hasn't been calculated yet which can be solved by stalling..
 
 #### Forwarding
 
 There are two cases of forwarding.
 The needed data may be in Memory Access stage or in Write Back stage.
 
+```mermaid
+flowchart LR
+    0[IF] --> 1[ID] --> 2[EXE] --> 3[MEM] --> 4[WB]
+    style 1 fill:#700
+    style 3 fill:#070
+    style 4 fill:#070
+```
+
 ```scala
 val memWbData = Wire(UInt(WordLen.W))
-val rs1Data = MuxCase(regFile(rs1Addr),
-    Seq(
-        (rs1Addr === 0.U)                                  -> 0.U,
-        (rs1Addr === memRegWbAddr && memRegRfWen === RenS) -> memWbData,
-        (rs1Addr === wbRegWbAddr && wbRegRfWen === RenS)   -> wbRegWbData
-    )
-)
-val rs2Data = MuxCase(regFile(rs2Addr),
-    Seq(
-        (rs2Addr === 0.U)                                  -> 0.U,
-        (rs2Addr === memRegWbAddr && memRegRfWen === RenS) -> memWbData,
-        (rs2Addr === wbRegWbAddr && wbRegRfWen === RenS)   -> wbRegWbData
-    )
-)
+val rs1Data = MuxCase(regFile(rs1Addr), Seq(
+    (rs1Addr === 0.U)                                  -> 0.U,
+    (rs1Addr === memRegWbAddr && memRegRfWen === RenS) -> memWbData,
+    (rs1Addr === wbRegWbAddr && wbRegRfWen === RenS)   -> wbRegWbData
+))
+val rs2Data = MuxCase(regFile(rs2Addr), Seq(
+    (rs2Addr === 0.U)                                  -> 0.U,
+    (rs2Addr === memRegWbAddr && memRegRfWen === RenS) -> memWbData,
+    (rs2Addr === wbRegWbAddr && wbRegRfWen === RenS)   -> wbRegWbData
+))
+```
+
+#### Stalling
+
+If the dependent data is in the execute stage, the pipeline need to be stalled for one cycle.
+
+```mermaid
+flowchart LR
+    0[IF] --> 1[ID] --> 2[EXE] --> 3[MEM] --> 4[WB]
+    style 1 fill:#700
+    style 2 fill:#070
+```
+
+Unlike the branch hazard, the data hazard stalling maintains current PC to fetch the same instruction again.
+After insterting a bubble, the needed data will be used immediately after being calculated.
+At this moment, the scenario has been changed into a forwarding scenario.
+
+```scala
+val stallFlag = Wire(Bool())
+
+ifRegPc := MuxCase(ifRegPc+4.U, Seq(
+    exeBrFlag -> exeBrTarget,
+    exeJmpFlag   -> exeAluOut,
+    eCallFlag -> csrRegFile(0x305.U), // Trap vector
+    stallFlag -> ifRegPc // Jump has higher priority than Stall
+))
+```
+
+```scala
+val rs1AddrBubble = idRegInst(19, 15)
+val rs2AddrBubble = idRegInst(24, 20)
+val rs1DataHazard = (exeRegRfWen === RenS) && (rs1AddrBubble =/= 0.U) && (rs1AddrBubble === exeRegWbAddr)
+val rs2DataHazard = (exeRegRfWen === RenS) && (rs2AddrBubble =/= 0.U) && (rs2AddrBubble === exeRegWbAddr)
+stallFlag := rs1DataHazard || rs2DataHazard
+
+idRegPc   := Mux(stallFlag, idRegPc, ifRegPc)
+idRegInst := MuxCase(inst, Seq(
+    (exeBrFlag||exeJmpFlag) -> Bubble,
+    stallFlag               -> idRegInst
+))
+
+val idInst = Mux((exeBrFlag||exeJmpFlag||stallFlag), Bubble, idRegInst)
+
+val rs1Addr = idInst(19, 15)
+val rs2Addr = idInst(24, 20)
+val wbAddr  = idInst(11, 7)
+
+val memWbData = Wire(UInt(WordLen.W))
+val rs1Data = MuxCase(regFile(rs1Addr), Seq(
+    (rs1Addr === 0.U)                                  -> 0.U,
+    (rs1Addr === memRegWbAddr && memRegRfWen === RenS) -> memWbData,
+    (rs1Addr === wbRegWbAddr && wbRegRfWen === RenS)   -> wbRegWbData
+))
+val rs2Data = MuxCase(regFile(rs2Addr), Seq(
+    (rs2Addr === 0.U)                                  -> 0.U,
+    (rs2Addr === memRegWbAddr && memRegRfWen === RenS) -> memWbData,
+    (rs2Addr === wbRegWbAddr && wbRegRfWen === RenS)   -> wbRegWbData
+))
 ```
