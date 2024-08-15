@@ -22,7 +22,7 @@ flowchart LR
 ```
 
 ```bash
-riscv64-unknown-elf-gcc ctest.c -march=rv32i -mabi=ilp32 -c -o ctest.o 
+riscv64-unknown-elf-gcc ./src/ctest.c -march=rv32i -mabi=ilp32 -c -o ./build/ctest.o 
 ```
 
 > `--target-help` displays target specific command line options.
@@ -55,7 +55,7 @@ SECTIONS
 `*` means all the link targets, and `*(.text)` represents any target file's `.text` section.
 
 ```bash
-riscv64-unknown-elf-ld ctest.o -b elf32-littleriscv -T link.ld -o ctest
+riscv64-unknown-elf-ld ./build/ctest.o -b elf32-littleriscv -T ./scripts/link.ld -o ./build/ctest
 ```
 
 -b: Specify target for following input files
@@ -63,7 +63,7 @@ riscv64-unknown-elf-ld ctest.o -b elf32-littleriscv -T link.ld -o ctest
 ## Hex and Dump
 
 ```bash
-riscv64-unknown-elf-objcopy ctest -O binary ctest.bin
-od -An -tx1 -w1 -v ctest.bin > ../../test/resources/hex/ctest.hex
-riscv64-unknown-elf-objdump ctest -b elf32-littleriscv -D > ./ctest.dump
+riscv64-unknown-elf-objcopy ./build/ctest -O binary ./bin/ctest.bin
+od -An -tx1 -w1 -v ./bin/ctest.bin > ../../test/resources/hex/ctest.hex
+riscv64-unknown-elf-objdump ./build/ctest -b elf32-littleriscv -D > ./dump/ctest.dump
 ```
