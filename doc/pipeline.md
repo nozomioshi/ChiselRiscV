@@ -202,3 +202,26 @@ The first one is that the needed data has not been written back to the register 
 The other one is that the needed data hasn't been calculated yet.
 The first kind of data hazard can be solved by forwarding.
 The second kind of data hazard can be solved by stalling.
+
+#### Forwarding
+
+There are two cases of forwarding.
+The needed data may be in Memory Access stage or in Write Back stage.
+
+```scala
+val memWbData = Wire(UInt(WordLen.W))
+val rs1Data = MuxCase(regFile(rs1Addr),
+    Seq(
+        (rs1Addr === 0.U)                                  -> 0.U,
+        (rs1Addr === memRegWbAddr && memRegRfWen === RenS) -> memWbData,
+        (rs1Addr === wbRegWbAddr && wbRegRfWen === RenS)   -> wbRegWbData
+    )
+)
+val rs2Data = MuxCase(regFile(rs2Addr),
+    Seq(
+        (rs2Addr === 0.U)                                  -> 0.U,
+        (rs2Addr === memRegWbAddr && memRegRfWen === RenS) -> memWbData,
+        (rs2Addr === wbRegWbAddr && wbRegRfWen === RenS)   -> wbRegWbData
+    )
+)
+```

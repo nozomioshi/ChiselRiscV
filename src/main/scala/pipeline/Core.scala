@@ -76,8 +76,21 @@ class Core extends Module {
     val rs1Addr = idInst(19, 15)
     val rs2Addr = idInst(24, 20)
     val wbAddr  = idInst(11, 7)
-    val rs1Data = Mux(rs1Addr =/= 0.U, regFile(rs1Addr), 0.U)
-    val rs2Data = Mux(rs2Addr =/= 0.U, regFile(rs2Addr), 0.U)
+    val memWbData = Wire(UInt(WordLen.W))
+    val rs1Data = MuxCase(regFile(rs1Addr),
+        Seq(
+            (rs1Addr === 0.U)                                  -> 0.U,
+            (rs1Addr === memRegWbAddr && memRegRfWen === RenS) -> memWbData,
+            (rs1Addr === wbRegWbAddr && wbRegRfWen === RenS)   -> wbRegWbData
+        )
+    )
+    val rs2Data = MuxCase(regFile(rs2Addr),
+        Seq(
+            (rs2Addr === 0.U)                                  -> 0.U,
+            (rs2Addr === memRegWbAddr && memRegRfWen === RenS) -> memWbData,
+            (rs2Addr === wbRegWbAddr && wbRegRfWen === RenS)   -> wbRegWbData
+        )
+    )
 
     val immI        = idInst(31, 20)
     val immIsext    = Cat(Fill(20, immI(11)), immI)
@@ -220,7 +233,7 @@ class Core extends Module {
         csrRegFile(csrAddr) := csrWdata
     }
 
-    val wbData = MuxCase(memRegAluOut, Seq(
+    memWbData := MuxCase(memRegAluOut, Seq(
         (memRegWbSel === WbMem) -> dmem.data,
         (memRegWbSel === WbPc)  -> (memRegPc+4.U),
         (memRegWbSel === WbCsr) -> csrRdata
@@ -229,7 +242,7 @@ class Core extends Module {
     // Write back
     wbRegWbAddr := memRegWbAddr
     wbRegRfWen  := memRegRfWen
-    wbRegWbData := wbData
+    wbRegWbData := memWbData
     
     when(wbRegRfWen === RenS) {
         regFile(wbRegWbAddr) := wbRegWbData
@@ -247,6 +260,7 @@ class Core extends Module {
     printf(cf"exeRegOp2Data : 0x${Hexadecimal(exeRegOp2Data)}\n")
     printf(cf"exeAluOut     : 0x${Hexadecimal(exeAluOut)}\n")
     printf(cf"memRegPc      : 0x${Hexadecimal(memRegPc)}\n")
-    printf(cf"wbData        : 0x${Hexadecimal(wbData)}\n")
+    printf(cf"memWbData     : 0x${Hexadecimal(memWbData)}\n")
+    printf(cf"wbRegWbData   : 0x${Hexadecimal(wbRegWbData)}\n")
     printf("-----------------\n")
 }
