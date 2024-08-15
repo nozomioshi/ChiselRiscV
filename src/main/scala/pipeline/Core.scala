@@ -237,7 +237,7 @@ class Core extends Module {
         (memRegCsrCmd === CsrE) -> 11.U // Machine ECALL
     ))
     when(memRegCsrCmd > 0.U) {
-        csrRegFile(csrAddr) := csrWdata
+        csrRegFile(memRegCsrAddr) := csrWdata
     }
 
     memWbData := MuxCase(memRegAluOut, Seq(
