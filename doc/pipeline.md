@@ -154,7 +154,7 @@ val csrWdata = MuxCase(0.U, Seq(
 ### Branch Hazard
 
 The simplest way to solve the branch hazard is to stall the pipeline.
-When the Execute stage is executing a branch or jump instruction, it will stall the pipeline for two cycles in a 5-stage pipeline.
+When the Execute stage is executing a successful branch or jump instruction, it will stall the pipeline for two cycles in a 5-stage pipeline.
 
 `nop` instruction actually means `addi x0, x0, 0`.
 
