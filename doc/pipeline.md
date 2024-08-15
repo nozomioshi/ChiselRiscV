@@ -189,6 +189,16 @@ val immZext     = Cat(Fill(27, 0.U), immZ)
 
 val controlSignals = ListLookup(idInst, List(AluX, Op1Rs1, Op2Rs2, MenX, RenS, WbX, CsrX),
 // ...
+)
 
 val csrAddr = Mux(csrCmd === CsrE, 0x342.U, idInst(31, 20)) // mcause: 0x342
 ```
+
+### Data Hazard
+
+There are two kinds of data hazards.
+
+The first one is that the needed data has not been written back to the register file but already been calculated.
+The other one is that the needed data hasn't been calculated yet.
+The first kind of data hazard can be solved by forwarding.
+The second kind of data hazard can be solved by stalling.
