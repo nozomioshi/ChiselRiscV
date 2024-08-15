@@ -56,7 +56,7 @@ class Core extends Module {
     val exeBrTarget = Wire(UInt(WordLen.W))
 
     val exeJmpFlag = Wire(Bool())
-    val eCallFlag = inst === Ecall
+    val eCallFlag  = inst === Ecall
 
     val exeAluOut = Wire(UInt(WordLen.W))
 
@@ -69,28 +69,30 @@ class Core extends Module {
 
     // Decode
     idRegPc   := ifRegPc
-    idRegInst := inst
+    idRegInst := Mux((exeBrFlag||exeJmpFlag), Bubble, inst)
 
-    val rs1Addr = idRegInst(19, 15)
-    val rs2Addr = idRegInst(24, 20)
-    val wbAddr  = idRegInst(11, 7)
+    val idInst = Mux((exeBrFlag||exeJmpFlag), Bubble, idRegInst)
+
+    val rs1Addr = idInst(19, 15)
+    val rs2Addr = idInst(24, 20)
+    val wbAddr  = idInst(11, 7)
     val rs1Data = Mux(rs1Addr =/= 0.U, regFile(rs1Addr), 0.U)
     val rs2Data = Mux(rs2Addr =/= 0.U, regFile(rs2Addr), 0.U)
 
-    val immI        = idRegInst(31, 20)
+    val immI        = idInst(31, 20)
     val immIsext    = Cat(Fill(20, immI(11)), immI)
-    val immS        = Cat(idRegInst(31, 25), idRegInst(11, 7))
+    val immS        = Cat(idInst(31, 25), idInst(11, 7))
     val immSsext    = Cat(Fill(20, immS(11)), immS)
-    val immB        = Cat(idRegInst(31), idRegInst(7), idRegInst(30, 25), idRegInst(11, 8))
+    val immB        = Cat(idInst(31), idInst(7), idInst(30, 25), idInst(11, 8))
     val immBsext    = Cat(Fill(19, immB(11)), immB, 0.U(1.W))
-    val immJ        = Cat(idRegInst(31), idRegInst(19, 12), idRegInst(20), idRegInst(30, 21))
+    val immJ        = Cat(idInst(31), idInst(19, 12), idInst(20), idInst(30, 21))
     val immJsext    = Cat(Fill(11, immJ(19)), immJ, 0.U(1.W))
-    val immU        = idRegInst(31, 12)
+    val immU        = idInst(31, 12)
     val immUshifted = Cat(immU, 0.U(12.W))
-    val immZ        = idRegInst(19, 15)
+    val immZ        = idInst(19, 15)
     val immZext     = Cat(Fill(27, 0.U), immZ)
 
-    val controlSignals = ListLookup(idRegInst, List(AluX, Op1Rs1, Op2Rs2, MenX, RenS, WbX, CsrX),
+    val controlSignals = ListLookup(idInst, List(AluX, Op1Rs1, Op2Rs2, MenX, RenS, WbX, CsrX),
         Array(
             Lw     -> List(AluAdd,   Op1Rs1, Op2Imi, MenX, RenS, WbMem, CsrX),
             Sw     -> List(AluAdd,   Op1Rs1, Op2Ims, MenS, RenX, WbX,   CsrX),
@@ -148,7 +150,7 @@ class Core extends Module {
         (op2Sel === Op2Imu) -> immUshifted
     ))
 
-    val csrAddr = Mux(csrCmd === CsrE, 0x342.U, idRegInst(31, 20)) // mcause: 0x342
+    val csrAddr = Mux(csrCmd === CsrE, 0x342.U, idInst(31, 20)) // mcause: 0x342
 
     // Execute
     exeRegPc       := idRegPc
@@ -225,9 +227,9 @@ class Core extends Module {
     ))
 
     // Write back
-    wbRegWbAddr   := memRegWbAddr
-    wbRegRfWen    := memRegRfWen
-    wbRegWbData   := wbData
+    wbRegWbAddr := memRegWbAddr
+    wbRegRfWen  := memRegRfWen
+    wbRegWbData := wbData
     
     when(wbRegRfWen === RenS) {
         regFile(wbRegWbAddr) := wbRegWbData
