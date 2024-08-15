@@ -63,25 +63,25 @@ class Core extends Module {
     val stallFlag = Wire(Bool())
 
     ifRegPc := MuxCase(ifRegPc+4.U, Seq(
-        exeBrFlag -> exeBrTarget,
-        exeJmpFlag   -> exeAluOut,
-        eCallFlag -> csrRegFile(0x305.U), // Trap vector
-        stallFlag -> ifRegPc // Jump has higher priority than Stall
+        exeBrFlag  -> exeBrTarget,
+        exeJmpFlag -> exeAluOut,
+        eCallFlag  -> csrRegFile(0x305.U), // Trap vector
+        stallFlag  -> ifRegPc // Jump has higher priority than Stall
     ))
     imem.addr := ifRegPc
 
     // Decode    
-    val rs1AddrBubble = idRegInst(19, 15)
-    val rs2AddrBubble = idRegInst(24, 20)
-    val rs1DataHazard = (exeRegRfWen === RenS) && (rs1AddrBubble =/= 0.U) && (rs1AddrBubble === exeRegWbAddr)
-    val rs2DataHazard = (exeRegRfWen === RenS) && (rs2AddrBubble =/= 0.U) && (rs2AddrBubble === exeRegWbAddr)
-    stallFlag := rs1DataHazard || rs2DataHazard
-
     idRegPc   := Mux(stallFlag, idRegPc, ifRegPc)
     idRegInst := MuxCase(inst, Seq(
         (exeBrFlag||exeJmpFlag) -> Bubble,
         stallFlag               -> idRegInst
     ))
+    
+    val rs1AddrBubble = idRegInst(19, 15)
+    val rs2AddrBubble = idRegInst(24, 20)
+    val rs1DataHazard = (exeRegRfWen === RenS) && (rs1AddrBubble =/= 0.U) && (rs1AddrBubble === exeRegWbAddr)
+    val rs2DataHazard = (exeRegRfWen === RenS) && (rs2AddrBubble =/= 0.U) && (rs2AddrBubble === exeRegWbAddr)
+    stallFlag := rs1DataHazard || rs2DataHazard
 
     val idInst = Mux((exeBrFlag||exeJmpFlag||stallFlag), Bubble, idRegInst)
 
@@ -257,13 +257,16 @@ class Core extends Module {
 
     // Debugging
     gp   := regFile(3)
-    exit := (idRegInst === Unimp)
+    // exit := (idRegInst === Unimp)
+    exit := (memRegPc === 0x44.U)
 
     printf(cf"ifRegPc       : 0x${Hexadecimal(ifRegPc)}\n")
     printf(cf"idRegPc       : 0x${Hexadecimal(idRegPc)}\n")
-    printf(cf"idReginst     : 0x${Hexadecimal(idRegInst)}\n")
+    printf(cf"idRegInst     : 0x${Hexadecimal(idRegInst)}\n")
     printf(cf"stallFlag     : $stallFlag\n")
     printf(cf"idInst        : 0x${Hexadecimal(idInst)}\n")
+    printf(cf"op1Data       : 0x${Hexadecimal(op1Data)}\n")
+    printf(cf"op2Data       : 0x${Hexadecimal(op2Data)}\n")
     printf(cf"exeRegPc      : 0x${Hexadecimal(exeRegPc)}\n")
     printf(cf"exeRegOp1Data : 0x${Hexadecimal(exeRegOp1Data)}\n")
     printf(cf"exeRegOp2Data : 0x${Hexadecimal(exeRegOp2Data)}\n")
