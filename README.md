@@ -38,6 +38,7 @@ where `container_name/id` can be found by running `docker ps -a`.
 - [riscvtests](doc/riscvtests.md)
 - [ctest](doc/ctest.md)
 - [pipeline](doc/pipeline.md)
+- [vsetvli](doc/vsetvli.md)
 
 ## Related Efforts
 
