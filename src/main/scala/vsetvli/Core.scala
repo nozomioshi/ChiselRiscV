@@ -95,7 +95,7 @@ class Core extends Module {
         CsrRsi  -> List(AluCopy1, Op1Imz, Op2X,   MenX, RenS, WbCsr, CsrS),
         CsrRci  -> List(AluCopy1, Op1Imz, Op2X,   MenX, RenS, WbCsr, CsrC),
         Ecall   -> List(AluX,     Op1X,   Op2X,   MenX, RenX, WbX,   CsrE),
-        VsetVli -> List(AluX,     Op1X,   Op2X,   MenX, RenX, WbVl,  CsrV)
+        VsetVli -> List(AluX,     Op1X,   Op2X,   MenX, RenS, WbVl,  CsrV)
     ))
 
     val exeFun :: op1Sel :: op2Sel :: memWen :: regFileWen :: wbSel :: csrCmd :: Nil = controlSignals
@@ -192,6 +192,8 @@ class Core extends Module {
     printf(cf"gp         : ${regFile(3)}\n")
     printf(cf"rs1Addr    : ${Decimal(rs1Addr)}\n")
     printf(cf"rs2Addr    : ${Decimal(rs2Addr)}\n")
+    printf(cf"rs1Data    : ${Decimal(rs1Data)}\n")
+    printf(cf"rs2Data    : ${Decimal(rs2Data)}\n")
     printf(cf"wbAddr     : ${Decimal(wbAddr)}\n")
     printf(cf"op1Data    : 0x${Hexadecimal(op1Data)}\n")
     printf(cf"op2Data    : 0x${Hexadecimal(op2Data)}\n")
