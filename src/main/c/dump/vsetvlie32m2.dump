@@ -1,12 +1,12 @@
 
-./build/vsetvli:     file format elf32-littleriscv
+./build/vsetvlie32m2:     file format elf32-littleriscv
 
 
 Disassembly of section .text.startup:
 
 00000000 <main>:
    0:	00500793          	li	a5,5
-   4:	0087f757          	vsetvli	a4,a5,e32,m1,tu,mu,d1
+   4:	0097f757          	vsetvli	a4,a5,e32,m2,tu,mu,d1
    8:	40e787b3          	sub	a5,a5,a4
    c:	fe079ce3          	bnez	a5,4 <main+0x4>
   10:	c0001073          	unimp

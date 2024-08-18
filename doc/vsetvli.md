@@ -63,7 +63,7 @@ riscv64-unknown-elf-gcc $< -O2 -march=rv32iv -mabi=ilp32 -c -o ./build/$@.o
 ```c
 asm volatile(
     "vsetvli %0, %1, e32, m1" // Assembly code
-    : "=r" (v1)  // Output operands
+    : "=r" (vl)  // Output operands
     : "r" (size) // Input operands
 );
 ```

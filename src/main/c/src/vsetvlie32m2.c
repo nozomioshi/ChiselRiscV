@@ -2,15 +2,15 @@
 
 int main() {
     unsigned int size = 5;
-    unsigned int v1;
+    unsigned int vl;
 
     while(size > 0) {
         asm volatile(
-            "vsetvli %0, %1, e32, m1" // Assembly code
-            : "=r" (v1)  // Output operands
+            "vsetvli %0, %1, e32, m2" // Assembly code
+            : "=r" (vl)  // Output operands
             : "r" (size) // Input operands
         );
-        size -= v1;
+        size -= vl;
     }
     asm volatile("unimp");
     return 0;
