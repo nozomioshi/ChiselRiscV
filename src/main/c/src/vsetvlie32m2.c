@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 int main() {
-    unsigned int size = 5;
+    unsigned int size = 10;
     unsigned int vl;
 
     while(size > 0) {

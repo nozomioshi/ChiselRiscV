@@ -67,5 +67,3 @@ asm volatile(
     : "r" (size) // Input operands
 );
 ```
-
-

@@ -5,7 +5,7 @@
 Disassembly of section .text.startup:
 
 00000000 <main>:
-   0:	00500793          	li	a5,5
+   0:	00a00793          	li	a5,10
    4:	0097f757          	vsetvli	a4,a5,e32,m2,tu,mu,d1
    8:	40e787b3          	sub	a5,a5,a4
    c:	fe079ce3          	bnez	a5,4 <main+0x4>
