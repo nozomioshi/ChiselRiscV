@@ -47,3 +47,25 @@ VLMAX = (VLEN \times LMUL) / SEW.
 $$
 
 `LMUL` determines the number ratio of the elements in the vector register, which is 1, 2, 4, 8, 1/2, 1/4, 1/8.
+
+## Test
+
+Set the RISC-V architecture from `rv32i` to `rv32iv`.
+
+```makefile
+riscv64-unknown-elf-gcc $< -O2 -march=rv32i -mabi=ilp32 -c -o ./build/$@.o
+```
+
+```makefile
+riscv64-unknown-elf-gcc $< -O2 -march=rv32iv -mabi=ilp32 -c -o ./build/$@.o
+```
+
+```c
+asm volatile(
+    "vsetvli %0, %1, e32, m1" // Assembly code
+    : "=r" (v1)  // Output operands
+    : "r" (size) // Input operands
+);
+```
+
+
