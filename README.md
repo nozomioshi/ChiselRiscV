@@ -40,6 +40,7 @@ where `container_name/id` can be found by running `docker ps -a`.
 - [pipeline](doc/pipeline.md)
 - [vsetvli](doc/vsetvli.md)
 - [vle](doc/vle.md)
+- [vadd](doc/vadd.md)
 
 ## Related Efforts
 
