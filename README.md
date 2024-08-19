@@ -41,6 +41,7 @@ where `container_name/id` can be found by running `docker ps -a`.
 - [vsetvli](doc/vsetvli.md)
 - [vle](doc/vle.md)
 - [vadd](doc/vadd.md)
+- [vse](doc/vse.md)
 
 ## Related Efforts
 
